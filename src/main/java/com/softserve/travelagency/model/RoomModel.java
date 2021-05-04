@@ -20,7 +20,12 @@ public class RoomModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Column(name = "number")
+    private Integer number;
+
     @Column(name = "type")
+    @Enumerated(EnumType.STRING)
     private RoomType type;
 
     @NotNull
@@ -28,6 +33,6 @@ public class RoomModel {
     @JoinColumn(name = "hotel_id")
     private HotelModel hotel;
 
-    @ManyToMany(mappedBy = "projects")
+    @ManyToMany(mappedBy = "rooms")
     private List<OrderModel> orders;
 }

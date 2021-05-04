@@ -43,6 +43,7 @@ public class UserModel {
 
     @NotNull
     @Column(name = "role")
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @OneToMany(cascade = CascadeType.ALL,
