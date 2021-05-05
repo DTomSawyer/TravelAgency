@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "order")
-public class OrderModel {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,12 +24,12 @@ public class OrderModel {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserModel user;
+    private User user;
 
     @NotNull
     @ManyToOne
     @JoinColumn(name = "hotel_id")
-    private HotelModel hotel;
+    private Hotel hotel;
 
     @NotNull
     @ManyToMany(cascade = CascadeType.ALL)
@@ -37,7 +37,7 @@ public class OrderModel {
             name = "order_rooms",
             joinColumns = @JoinColumn(name = "room_id"),
             inverseJoinColumns = @JoinColumn(name = "order_id"))
-    private List<RoomModel> rooms;
+    private List<Room> rooms;
 
     @NotNull
     @Column(name = "arrival_date")
