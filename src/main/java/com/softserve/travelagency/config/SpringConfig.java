@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 
 @Configuration
-@ComponentScan("com.softserve.travelagency")
+@ComponentScan("com.softserve.travelagency") // only .controller ?
 @EnableWebMvc
 public class SpringConfig {
 
