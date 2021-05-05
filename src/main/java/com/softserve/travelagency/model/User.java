@@ -18,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "user")
-public class UserModel {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -48,5 +48,5 @@ public class UserModel {
 
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "user")
-    private List<OrderModel> orders;
+    private List<Order> orders;
 }

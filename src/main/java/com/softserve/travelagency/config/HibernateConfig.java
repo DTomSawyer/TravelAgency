@@ -55,6 +55,9 @@ public class HibernateConfig {
                 "hibernate.dialect", "org.hibernate.dialect.PostgreSQL94Dialect");
         hibernateProperties.setProperty(
                 "hibernate.current_session_context_class", "thread"
+//        ("hibernate.show_sql", "true");
+//        ("hibernate.format_sql", "true");
+        //properties.put("hibernate.hbm2ddl.auto", "create");
         );
         return hibernateProperties;
     }
