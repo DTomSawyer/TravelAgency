@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-@RequestMapping("/")
+@RequestMapping("/home")
 @Controller
 public class UserController {
 
@@ -21,7 +21,7 @@ public class UserController {
     this.userDAO = userDAO;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public String showAllUsers(Model model){
         model.addAttribute("users",userDAO.getAllUsers());
         return "all-users";

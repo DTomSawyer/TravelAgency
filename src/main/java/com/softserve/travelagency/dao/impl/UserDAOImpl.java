@@ -5,6 +5,7 @@ import com.softserve.travelagency.model.Order;
 import com.softserve.travelagency.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,8 +28,10 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<User> getAllUsers() {
         Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
         List<User> allUsers = session.createQuery("from User", User.class)
                 .getResultList();
+        transaction.commit();
         return allUsers;
     }
 
@@ -36,23 +39,29 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void saveUser(User user) {
         Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
         session.save(user);
+        transaction.commit();
     }
 
     @Override
     public User getUserById(Long id) {
         Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
         User user = session.get(User.class,id);
+        transaction.commit();
         return user;
     }
 
     @Override
     public void delete(Long id) {
         Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
         Query<User> query = session.createQuery("delete from User " +
                 "where id =:userId");
         query.setParameter("userId",id);
         query.executeUpdate();
+        transaction.commit();
     }
 //    @Override
 //    public void delete2(User user) {
