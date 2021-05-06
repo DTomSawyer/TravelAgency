@@ -39,14 +39,14 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(Long id) {
         Session session = sessionFactory.getCurrentSession();
         User user = session.get(User.class,id);
         return user;
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         Session session = sessionFactory.getCurrentSession();
         Query<User> query = session.createQuery("delete from User " +
                 "where id =:userId");
