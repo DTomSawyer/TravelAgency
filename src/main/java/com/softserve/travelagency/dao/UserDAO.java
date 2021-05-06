@@ -7,5 +7,12 @@ import java.util.List;
 
 public interface UserDAO {
     public List<User> getAllUsers();
-    public List<Order> getOrdersByUserId(int userID);
+
+    public void saveUser(User user);
+
+    public User getUserById(int id);
+
+    public void delete(int id);
+
+//    void delete2(User user);
 }
