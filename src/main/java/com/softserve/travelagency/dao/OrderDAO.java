@@ -10,4 +10,6 @@ public interface OrderDAO {
     Order getOrderById(Long id);
 
     List<Order> getOrdersByUserId(Long id);
+
+    void deleteOrderById(Long id);
 }
