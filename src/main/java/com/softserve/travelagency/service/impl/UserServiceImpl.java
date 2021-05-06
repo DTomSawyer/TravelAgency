@@ -1,8 +1,6 @@
 package com.softserve.travelagency.service.impl;
 
 import com.softserve.travelagency.dao.UserDAO;
-import com.softserve.travelagency.dao.impl.UserDAOImpl;
-import com.softserve.travelagency.model.Room;
 import com.softserve.travelagency.model.User;
 import com.softserve.travelagency.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
