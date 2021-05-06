@@ -33,6 +33,6 @@ public class UserDAOImpl implements UserDAO {
         Session session = sessionFactory.getCurrentSession();
         List<Order> allOrdersByUserId = session.createQuery("from Order", Order.class)
                 .getResultList();
-        return allOrdersByUserId
+        return allOrdersByUserId;
     }
 }

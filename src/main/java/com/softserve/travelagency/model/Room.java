@@ -30,6 +30,10 @@ public class Room {
     private RoomType type;
 
     @NotNull
+    @Column(name = "price")
+    private Double price;
+
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
