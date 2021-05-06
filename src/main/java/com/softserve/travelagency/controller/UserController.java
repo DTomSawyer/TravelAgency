@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Date;
 import java.util.Locale;
 
-@RequestMapping("/")
+@RequestMapping("/home")
 @Controller
 @AllArgsConstructor
 public class UserController {
@@ -38,7 +38,7 @@ public class UserController {
     private HotelService hotelService;
     private RoomService roomService;
 
-    @GetMapping
+    @GetMapping("/all")
     public String showAllUsers(Model model){
         model.addAttribute("users",userService.getAllUsers());
         return "all-users";

@@ -28,19 +28,19 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<User> getAllUsers() {
         Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
         List<User> allUsers = session.createQuery("from User", User.class)
                 .getResultList();
+        transaction.commit();
         return allUsers;
     }
 
 
     @Override
-    //@Transactional
     public void saveUser(User user) {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
         session.save(user);
-        session.flush();
         transaction.commit();
     }
 
@@ -56,10 +56,12 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void delete(Long id) {
         Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
         Query<User> query = session.createQuery("delete from User " +
                 "where id =:userId");
         query.setParameter("userId",id);
         query.executeUpdate();
+        transaction.commit();
     }
 //    @Override
 //    public void delete2(User user) {
