@@ -1,11 +1,11 @@
 package com.softserve.travelagency.dao.impl;
 
 import com.softserve.travelagency.dao.OrderDAO;
-import com.softserve.travelagency.model.Hotel;
 import com.softserve.travelagency.model.Order;
 import lombok.AllArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
@@ -20,28 +20,45 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
     public void saveOrder(Order order) {
         Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
         session.persist(order);
         session.flush();
+
+        transaction.commit();
     }
 
     @Override
     public Order getOrderById(Long id) {
         Session session = sessionFactory.getCurrentSession();
-        return session.find(Order.class, id);
+        Transaction transaction = session.beginTransaction();
+
+        Order order = session.find(Order.class, id);
+
+        transaction.commit();
+        return order;
     }
 
     @Override
     public List<Order> getOrdersByUserId(Long userId) {
         Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
         Query query = session.createQuery("FROM Order O WHERE O.user.id = :userId", Order.class);
         query.setParameter("userId", userId);
+
+        transaction.commit();
         return query.getResultList();
     }
 
     @Override
     public void deleteOrderById(Long id) {
         Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
         Order order = session.find(Order.class, id);
         session.remove(order);
+
+        transaction.commit();
     }
 }

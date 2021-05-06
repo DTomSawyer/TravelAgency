@@ -14,7 +14,7 @@
           <element id="module-output" name="TravelAgency" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.2.5" />
+          <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.2.2" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:5.4.29.Final" />
           <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.4.1.Final" />
           <element id="library" level="project" name="Maven: javax.persistence:javax.persistence-api:2.2" />

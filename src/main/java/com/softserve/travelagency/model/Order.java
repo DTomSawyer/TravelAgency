@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Date;
 
@@ -40,17 +41,17 @@ public class Order {
     private List<Room> rooms;
 
     @NotNull
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.DATE)
     @Column(name = "arrival_date")
-    private Date arrivalDate;
+    private LocalDate arrivalDate;
 
     @NotNull
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.DATE)
     @Column(name = "departure_date")
-    private Date departureDate;
+    private LocalDate departureDate;
 
     @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.DATE)
     @Column(name = "order_date")
-    private Date orderDate;
+    private LocalDate orderDate;
 }
