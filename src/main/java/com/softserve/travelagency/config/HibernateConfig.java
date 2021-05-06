@@ -23,7 +23,6 @@ public class HibernateConfig {
         dataSource.setUrl("jdbc:postgresql://localhost:5432/postgres"); //DB_CLOSE_DELAY=-1
         dataSource.setUsername("postgres");
         dataSource.setPassword("");
-
         return dataSource;
     }
 
@@ -34,7 +33,6 @@ public class HibernateConfig {
         sessionFactory.setPackagesToScan(
                 "com.softserve.travelagency.model");
         sessionFactory.setHibernateProperties(hibernateProperties());
-
         return sessionFactory;
     }
 

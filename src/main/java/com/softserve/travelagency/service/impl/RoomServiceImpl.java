@@ -22,7 +22,23 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Transactional
+    @Override
     public List<Room> getAllRooms(){
        return roomDAO.getAllRooms();
+    }
+    @Transactional
+    @Override
+    public void saveRoom(Room room) {
+
+    }
+    @Transactional
+    @Override
+    public User getRoomById(Long id) {
+        return null;
+    }
+    @Transactional
+    @Override
+    public void deleteRoom(Long id) {
+
     }
 }
