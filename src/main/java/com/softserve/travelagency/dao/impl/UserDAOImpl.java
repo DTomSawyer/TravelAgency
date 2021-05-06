@@ -28,11 +28,11 @@ public class UserDAOImpl implements UserDAO {
         return allUsers;
     }
 
-    @Override
+    /*@Override
     public List<Order> getOrdersByUserId(int userId) {
         Session session = sessionFactory.getCurrentSession();
         List<Order> allOrdersByUserId = session.createQuery("from Order", Order.class)
                 .getResultList();
         return allOrdersByUserId;
-    }
+    }*/
 }

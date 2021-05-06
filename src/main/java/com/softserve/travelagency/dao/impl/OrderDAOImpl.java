@@ -20,7 +20,7 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     @Transactional
-    public void save(Order order) {
+    public void saveOrder(Order order) {
         Session session = sessionFactory.getCurrentSession();
         session.save(order);
     }
