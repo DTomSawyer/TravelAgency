@@ -40,13 +40,17 @@ public class OrderModel {
     private List<RoomModel> rooms;
 
     @NotNull
+    @Temporal(TemporalType.DATE)
     @Column(name = "arrival_date")
     private Date arrivalDate;
 
     @NotNull
+    @Temporal(TemporalType.DATE)
     @Column(name = "departure_date")
     private Date departureDate;
 
-    @Column(name = "timestamp")
-    private Timestamp timestamp;
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "order_date")
+    private Date orderDate;
 }
