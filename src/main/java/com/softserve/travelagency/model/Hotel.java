@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "hotel")
-public class HotelModel {
+public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,9 +38,9 @@ public class HotelModel {
     @NotNull
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "hotel")
-    private List<RoomModel> rooms;
+    private List<Room> rooms;
 
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "hotel")
-    private List<OrderModel> orders;
+    private List<Order> orders;
 }

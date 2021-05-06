@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "room")
-public class RoomModel {
+public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,8 +31,8 @@ public class RoomModel {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "hotel_id")
-    private HotelModel hotel;
+    private Hotel hotel;
 
     @ManyToMany(mappedBy = "rooms")
-    private List<OrderModel> orders;
+    private List<Order> orders;
 }

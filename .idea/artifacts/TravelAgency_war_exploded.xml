@@ -14,6 +14,7 @@
           <element id="module-output" name="TravelAgency" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:5.4.29.Final" />
           <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.4.1.Final" />
           <element id="library" level="project" name="Maven: javax.persistence:javax.persistence-api:2.2" />
@@ -45,6 +46,11 @@
           <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.2.5" />
           <element id="library" level="project" name="Maven: org.hibernate.validator:hibernate-validator:7.0.1.Final" />
           <element id="library" level="project" name="Maven: jakarta.validation:jakarta.validation-api:3.0.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-orm:5.2.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.2.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.2.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-dbcp:10.0.0-M7" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:10.0.0-M7" />
         </element>
       </element>
       <element id="directory" name="META-INF">
