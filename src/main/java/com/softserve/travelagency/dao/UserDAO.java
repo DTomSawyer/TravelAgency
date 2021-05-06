@@ -6,6 +6,7 @@ import com.softserve.travelagency.model.User;
 import java.util.List;
 
 public interface UserDAO {
+
     public List<User> getAllUsers();
 
     public void saveUser(User user);
@@ -15,4 +16,4 @@ public interface UserDAO {
     public void delete(int id);
 
 //    void delete2(User user);
-}
+

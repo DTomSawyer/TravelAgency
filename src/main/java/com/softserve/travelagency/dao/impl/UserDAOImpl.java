@@ -32,6 +32,7 @@ public class UserDAOImpl implements UserDAO {
         return allUsers;
     }
 
+
     @Override
     public void saveUser(User user) {
         Session session = sessionFactory.getCurrentSession();
@@ -58,4 +59,5 @@ public class UserDAOImpl implements UserDAO {
 //        Session session = sessionFactory.getCurrentSession();
 //        session.delete(user);
 //    }
+
 }
