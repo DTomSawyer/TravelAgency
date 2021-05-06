@@ -24,14 +24,14 @@ public class HotelDAOImpl implements HotelDAO {
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public Hotel getHotelById(Long id) {
         Session session = sessionFactory.getCurrentSession();
         return session.find(Hotel.class, id);
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public List<Hotel> getHotelsByCountry(String country) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("FROM Hotel O WHERE O.country = :country", Hotel.class);
@@ -40,7 +40,7 @@ public class HotelDAOImpl implements HotelDAO {
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public List<Hotel> getHotelsByCity(String city) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("FROM Hotel O WHERE O.city = :city", Hotel.class);
@@ -49,7 +49,7 @@ public class HotelDAOImpl implements HotelDAO {
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public List<Hotel> getAllHotels() {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("FROM Hotel", Hotel.class).getResultList();

@@ -26,12 +26,14 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
+    //@Transactional
     public Order getOrderById(Long id) {
         Session session = sessionFactory.getCurrentSession();
         return session.find(Order.class, id);
     }
 
     @Override
+    //@Transactional
     public List<Order> getOrdersByUserId(Long userId) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("FROM Order O WHERE O.user.id = :userId", Order.class);
