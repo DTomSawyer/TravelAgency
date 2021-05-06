@@ -5,6 +5,7 @@ import com.softserve.travelagency.model.Order;
 import com.softserve.travelagency.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -34,15 +35,21 @@ public class UserDAOImpl implements UserDAO {
 
 
     @Override
+    //@Transactional
     public void saveUser(User user) {
         Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
         session.save(user);
+        session.flush();
+        transaction.commit();
     }
 
     @Override
     public User getUserById(Long id) {
         Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
         User user = session.get(User.class,id);
+        transaction.commit();
         return user;
     }
 

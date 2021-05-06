@@ -19,45 +19,50 @@ public class HibernateConfig {
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
+
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/postgres"); //DB_CLOSE_DELAY=-1
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/travel_agency"); //DB_CLOSE_DELAY=-1
         dataSource.setUsername("postgres");
-        dataSource.setPassword("");
+        dataSource.setPassword("root");
+
         return dataSource;
     }
 
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan(
                 "com.softserve.travelagency.model");
         sessionFactory.setHibernateProperties(hibernateProperties());
+
         return sessionFactory;
     }
-
 
     @Bean
     public PlatformTransactionManager transactionManager() {
         HibernateTransactionManager transactionManager
                 = new HibernateTransactionManager();
+
         transactionManager.setSessionFactory(sessionFactory().getObject());
+
         return transactionManager;
     }
 
     private Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();
+
         hibernateProperties.setProperty(
                 "hibernate.hbm2ddl.auto", "update");
         hibernateProperties.setProperty(
-                "hibernate.dialect", "org.hibernate.dialect.PostgreSQL94Dialect");
+                "hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         hibernateProperties.setProperty(
-                "hibernate.current_session_context_class", "thread"
-//        ("hibernate.show_sql", "true");
-//        ("hibernate.format_sql", "true");
-        //properties.put("hibernate.hbm2ddl.auto", "create");
-        );
+                "hibernate.current_session_context_class", "thread");
+        hibernateProperties.setProperty("hibernate.show_sql", "true");
+        hibernateProperties.setProperty("hibernate.format_sql", "true");
+        //hibernateProperties.put("hibernate.hbm2ddl.auto", "create");
+
         return hibernateProperties;
     }
-
 }
