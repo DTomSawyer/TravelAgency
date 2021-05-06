@@ -2,7 +2,6 @@ package com.softserve.travelagency.dao.impl;
 
 import com.softserve.travelagency.dao.OrderDAO;
 import com.softserve.travelagency.model.Order;
-import com.softserve.travelagency.model.User;
 import lombok.AllArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,7 +21,8 @@ public class OrderDAOImpl implements OrderDAO {
     @Transactional
     public void saveOrder(Order order) {
         Session session = sessionFactory.getCurrentSession();
-        session.save(order);
+        session.persist(order);
+        session.flush();
     }
 
     @Override
@@ -34,7 +34,7 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
     public List<Order> getOrdersByUserId(Long userId) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("FROM Order O WHERE O.user.id = :userId", Order.class); //???
+        Query query = session.createQuery("FROM Order O WHERE O.user.id = :userId", Order.class);
         query.setParameter("userId", userId);
         return query.getResultList();
     }

@@ -2,7 +2,6 @@ package com.softserve.travelagency.dao.impl;
 
 import com.softserve.travelagency.dao.HotelDAO;
 import com.softserve.travelagency.model.Hotel;
-import com.softserve.travelagency.model.Order;
 import lombok.AllArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,7 +19,8 @@ public class HotelDAOImpl implements HotelDAO {
     @Transactional
     public void saveHotel(Hotel hotel) {
         Session session = sessionFactory.getCurrentSession();
-        session.save(hotel);
+        session.persist(hotel);
+        session.flush();
     }
 
     @Override
