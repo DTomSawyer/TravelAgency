@@ -52,6 +52,18 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
+    public List<Order> getOrdersByHotelId(Long hotelId) {
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("FROM Order O WHERE O.hotel.id = :hotelId", Order.class);
+        query.setParameter("hotelId", hotelId);
+
+        transaction.commit();
+        return query.getResultList();
+    }
+
+    @Override
     public void deleteOrderById(Long id) {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();

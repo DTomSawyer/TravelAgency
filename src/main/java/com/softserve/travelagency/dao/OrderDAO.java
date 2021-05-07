@@ -9,7 +9,9 @@ public interface OrderDAO {
 
     Order getOrderById(Long id);
 
-    List<Order> getOrdersByUserId(Long id);
+    List<Order> getOrdersByUserId(Long userId);
+
+    List<Order> getOrdersByHotelId(Long hotelId);
 
     void deleteOrderById(Long id);
 }

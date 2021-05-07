@@ -31,6 +31,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> getOrdersByHotelId(Long hotelId) {
+        return orderDAO.getOrdersByHotelId(hotelId);
+    }
+
+    @Override
     public void deleteOrderById(Long id) {
         orderDAO.deleteOrderById(id);
     }
