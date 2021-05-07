@@ -76,7 +76,7 @@ public class OrderDAOImpl implements OrderDAO {
         Query query = session.createQuery("SELECT FROM Room R WHERE R NOT IN " +
                 "(SELECT Order.rooms FROM Order O WHERE O.hotel.id = :hotelId" +
                 "AND O.arrivalDate > :arrivalDate" +
-                "AND O.departureDate > :departureDate)", Order.class);
+                "AND O.departureDate > :departureDate)", Room.class);
 
         query.setParameter("arrivalDate", arrivalDate);
         query.setParameter("departureDate", departureDate);
