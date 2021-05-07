@@ -1,7 +1,9 @@
 package com.softserve.travelagency.dao.impl;
 
 import com.softserve.travelagency.dao.OrderDAO;
+import com.softserve.travelagency.model.Hotel;
 import com.softserve.travelagency.model.Order;
+import com.softserve.travelagency.model.Room;
 import lombok.AllArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,6 +11,7 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -58,6 +61,25 @@ public class OrderDAOImpl implements OrderDAO {
 
         Query query = session.createQuery("FROM Order O WHERE O.hotel.id = :hotelId", Order.class);
         query.setParameter("hotelId", hotelId);
+
+        transaction.commit();
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Room> getByHotelIdAndDates(Long hotelId, LocalDate arrivalDate,
+                                           LocalDate departureDate) {
+
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("SELECT FROM Room R WHERE R NOT IN " +
+                "(SELECT Order.rooms FROM Order O WHERE O.hotel.id = :hotelId" +
+                "AND O.arrivalDate > :arrivalDate" +
+                "AND O.departureDate > :departureDate)", Order.class);
+
+        query.setParameter("arrivalDate", arrivalDate);
+        query.setParameter("departureDate", departureDate);
 
         transaction.commit();
         return query.getResultList();
