@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -21,24 +22,26 @@ public class RoomServiceImpl implements RoomService {
         this.roomDAO = roomDAO;
     }
 
-    @Transactional
     @Override
     public List<Room> getAllRooms(){
        return roomDAO.getAllRooms();
     }
-    @Transactional
     @Override
     public void saveRoom(Room room) {
-
+    roomDAO.saveRoom(room);
     }
-    @Transactional
     @Override
     public Room getRoomById(Long id) {
-        return null;
+        return roomDAO.getRoomById(id);
     }
-    @Transactional
     @Override
     public void deleteRoom(Long id) {
+        roomDAO.delete(id);
 
+    }
+
+    @Override
+    public List<Room> getAvailableRooms(LocalDate arrivalDate, LocalDate departureDate) {
+        return roomDAO.getAvailableRooms(arrivalDate, departureDate);
     }
 }

@@ -3,7 +3,7 @@ package com.softserve.travelagency.service;
 import com.softserve.travelagency.model.Room;
 
 
-
+import java.time.LocalDate;
 import java.util.List;
 
 public interface RoomService {
@@ -15,4 +15,6 @@ public interface RoomService {
     public Room getRoomById(Long id);
 
     public void deleteRoom(Long id);
+
+    public List<Room> getAvailableRooms(LocalDate arrivalDate,LocalDate departureDate);
 }

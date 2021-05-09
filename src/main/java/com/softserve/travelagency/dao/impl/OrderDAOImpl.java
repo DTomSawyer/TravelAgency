@@ -46,9 +46,9 @@ public class OrderDAOImpl implements OrderDAO {
 
         Query query = session.createQuery("FROM Order O WHERE O.user.id = :userId", Order.class);
         query.setParameter("userId", userId);
-
+        List<Order> order = query.getResultList();
         transaction.commit();
-        return query.getResultList();
+        return order;
     }
 
     @Override
@@ -58,9 +58,9 @@ public class OrderDAOImpl implements OrderDAO {
 
         Query query = session.createQuery("FROM Order O WHERE O.hotel.id = :hotelId", Order.class);
         query.setParameter("hotelId", hotelId);
-
+        List<Order> order = query.getResultList();
         transaction.commit();
-        return query.getResultList();
+        return order;
     }
 
     @Override
