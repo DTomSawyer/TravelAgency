@@ -47,9 +47,9 @@ public class HotelDAOImpl implements HotelDAO {
 
         Query query = session.createQuery("FROM Hotel H WHERE H.country = :country", Hotel.class);
         query.setParameter("country", country);
-
+        List<Hotel> hotel = query.getResultList();
         transaction.commit();
-        return query.getResultList();
+        return hotel;
     }
 
     @Override
@@ -59,9 +59,9 @@ public class HotelDAOImpl implements HotelDAO {
 
         Query query = session.createQuery("FROM Hotel H WHERE H.city = :city", Hotel.class);
         query.setParameter("city", city);
-
+        List<Hotel> hotel = query.getResultList();
         transaction.commit();
-        return query.getResultList();
+        return hotel;
     }
 
     @Override
@@ -70,9 +70,9 @@ public class HotelDAOImpl implements HotelDAO {
         Transaction transaction = session.beginTransaction();
 
         Query query = session.createQuery("FROM Hotel", Hotel.class);
-
+        List<Hotel> hotel = query.getResultList();
         transaction.commit();
-        return query.getResultList();
+        return hotel;
     }
 
     @Override
@@ -84,5 +84,18 @@ public class HotelDAOImpl implements HotelDAO {
         session.remove(hotel);
 
         transaction.commit();
+    }
+
+    @Override
+    public List<String> getAllCountries() {
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createNativeQuery("select country from hotels");
+        List<String> allCountries = query.getResultList();
+
+        transaction.commit();
+
+        return allCountries;
     }
 }

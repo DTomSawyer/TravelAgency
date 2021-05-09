@@ -44,4 +44,9 @@ public class HotelServiceImpl implements HotelService {
     public void deleteHotelById(Long id) {
         hotelDAO.deleteHotelById(id);
     }
+
+    @Override
+    public List<String> getAllCountries(){
+       return hotelDAO.getAllCountries();
+    }
 }
