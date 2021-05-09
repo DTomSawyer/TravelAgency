@@ -84,4 +84,17 @@ public class HotelDAOImpl implements HotelDAO {
 
         transaction.commit();
     }
+
+    @Override
+    public List<String> getAllCountries() {
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createNativeQuery("select country from hotels");
+        List<String> allCountries = query.getResultList();
+
+        transaction.commit();
+
+        return allCountries;
+    }
 }

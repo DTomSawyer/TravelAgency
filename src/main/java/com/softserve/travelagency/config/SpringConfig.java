@@ -6,18 +6,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 
 @Configuration
 @ComponentScan("com.softserve.travelagency") // only .controller ?
 @EnableWebMvc
-public class SpringConfig {
+public class SpringConfig implements WebMvcConfigurer{
 
-    private final ApplicationContext applicationContext;
+    private final ApplicationContext applicationContext ;
 
     @Autowired
     public SpringConfig(ApplicationContext applicationContext){

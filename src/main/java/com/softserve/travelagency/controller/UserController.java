@@ -1,81 +1,82 @@
-//package com.softserve.travelagency.controller;
-//
-//import com.softserve.travelagency.dao.OrderDAO;
-//import com.softserve.travelagency.dao.UserDAO;
-//import com.softserve.travelagency.dao.impl.UserDAOImpl;
-//import com.softserve.travelagency.model.Hotel;
-//import com.softserve.travelagency.model.Order;
-//import com.softserve.travelagency.model.Room;
-//import com.softserve.travelagency.model.User;
-//import com.softserve.travelagency.model.util.Role;
-//import com.softserve.travelagency.model.util.RoomType;
-//import com.softserve.travelagency.service.HotelService;
-//import com.softserve.travelagency.service.OrderService;
-//import com.softserve.travelagency.service.RoomService;
-//import com.softserve.travelagency.service.UserService;
-//import lombok.AllArgsConstructor;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.*;
-//
-//import java.time.LocalDate;
-//import java.time.LocalDateTime;
-//import java.time.format.DateTimeFormatter;
-//import java.util.List;
-//import java.util.Date;
-//import java.util.Locale;
-//
-//@RequestMapping("/home")
-//@Controller
-//
-//public class UserController {
-//
-//    private UserService userService;
-//    private OrderService orderService;
-//    private HotelService hotelService;
-//    private RoomService roomService;
-//
-//    @Autowired
-//    public UserController(UserService userService, OrderService orderService, HotelService hotelService, RoomService roomService) {
-//        this.userService = userService;
-//        this.orderService = orderService;
-//        this.hotelService = hotelService;
-//        this.roomService = roomService;
+package com.softserve.travelagency.controller;
+
+import com.softserve.travelagency.dao.OrderDAO;
+import com.softserve.travelagency.dao.UserDAO;
+import com.softserve.travelagency.dao.impl.UserDAOImpl;
+import com.softserve.travelagency.model.Hotel;
+import com.softserve.travelagency.model.Order;
+import com.softserve.travelagency.model.Room;
+import com.softserve.travelagency.model.User;
+import com.softserve.travelagency.model.util.Role;
+import com.softserve.travelagency.model.util.RoomType;
+import com.softserve.travelagency.service.HotelService;
+import com.softserve.travelagency.service.OrderService;
+import com.softserve.travelagency.service.RoomService;
+import com.softserve.travelagency.service.UserService;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Date;
+import java.util.Locale;
+
+@RequestMapping("/home")
+@Controller
+
+public class UserController {
+
+    private UserService userService;
+    private OrderService orderService;
+    private HotelService hotelService;
+    private RoomService roomService;
+
+    @Autowired
+    public UserController(UserService userService, OrderService orderService, HotelService hotelService, RoomService roomService) {
+        this.userService = userService;
+        this.orderService = orderService;
+        this.hotelService = hotelService;
+        this.roomService = roomService;
+    }
+
+//    @GetMapping("/add")
+//    public String addNewHotel(Model model){
+//        model.addAttribute("hotel",new Hotel());
+//        return "register";
 //    }
-//
-////    @GetMapping("/add")
-////    public String addNewHotel(Model model){
-////        model.addAttribute("hotel",new Hotel());
-////        return "register";
-////    }
-//
-//
+
 //
 //    @PostMapping("/saveNew")
-//    public String addnewHotel(@ModelAttribute Hotel hotel){
+//    public String addnewHotel(@ModelAttribute Hotel hotel) {
 //        hotelService.addHotel(hotel);
 //        return "redirect:/all";
 //    }
-//
-//    @GetMapping("/all")
-//    public String showAllUsers(Model model){
-//        model.addAttribute("users",userService.getAllUsers());
-//        return "all-users";
-//    }
-//
-//    @ResponseBody
-//    @GetMapping(value = "/add")
-//    public String addOrder() {
-////        User user = User.builder()
-////                .email("kwintiuk@icloud.com")
-////                .firstName("Nastya")
-////                .lastName("Kwintiuk")
-////                .password("1234567890")
-////                .role(Role.USER)
-////                .build();
-////
-////        userService.saveUser(user);
+
+    @GetMapping("/all")
+    public String showAllUsers(Model model) {
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        return "all-users";
+    }
+
+
+    @ResponseBody
+    @GetMapping(value = "/add")
+    public String addOrder() {
+        User user = User.builder()
+                .email("kwintiuk12ee@icloud.com")
+                .firstName("Nastyaeee")
+                .lastName("Kwintiukeee")
+                .password("1234567833390")
+                .role(Role.USER)
+                .build();
+
+        userService.saveUser(user);
 //
 //        Hotel hotel = Hotel.builder()
 //                .name("Rixos")
@@ -108,6 +109,6 @@
 ////        orderService.addOrder(order);
 ////
 ////        orderService.getOrderById(1L);
-//        return "Success";
-//    }
-//}
+        return "Success";
+    }
+}

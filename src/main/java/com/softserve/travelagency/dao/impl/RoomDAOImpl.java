@@ -63,20 +63,23 @@ public class RoomDAOImpl implements RoomDAO {
     }
 
 
-    public List<Room> getAvailableRooms(LocalDate arrivalDate, LocalDate departureDate) {
-        Session session = sessionFactory.getCurrentSession();
-        Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("select r from Room r where r not" +
-                " in (" +
-                "select ro " +
-                "from Order ro " +
-                "where ro.departureDate >=:departureDate " +
-                "and ro.arrivalDate <=:arrivalDate)");
-        query.setParameter("arrivalDate", arrivalDate);
-        query.setParameter("departureDate", departureDate);
-        List<Room> room = query.getResultList();
-        transaction.commit();
 
-        return room;
-    }
+public List<Room> getAvailableRooms(LocalDate arrivalDate, LocalDate departureDate) {
+    Session session = sessionFactory.getCurrentSession();
+    Transaction transaction = session.beginTransaction();
+    Query query = session.createQuery("select r from Room r where r not" +
+            " in (" +
+            "select ro " +
+            "from Order ro " +
+            "where :arrivalDate between ro.arrivalDate and ro.departureDate " +
+            "and :departureDate between ro.arrivalDate and ro.departureDate " +
+            "and ro.arrivalDate between :arrivalDate and :departureDate " +
+            "and ro.departureDate between :arrivalDate and :departureDate)");
+    query.setParameter("arrivalDate", arrivalDate);
+    query.setParameter("departureDate", departureDate);
+    List<Room> room = query.getResultList();
+    transaction.commit();
+
+    return room;
+}
 }
