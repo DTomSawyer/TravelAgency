@@ -40,17 +40,14 @@ public class Order {
     private List<Room> rooms;
 
     @NotNull
-    //@Temporal(TemporalType.DATE)
     @Column(name = "arrival_date")
     private LocalDate arrivalDate;
 
     @NotNull
-    //@Temporal(TemporalType.DATE)
     @Column(name = "departure_date")
     private LocalDate departureDate;
 
     @NotNull
-    //@Temporal(TemporalType.DATE)
     @Column(name = "order_date")
     private LocalDate orderDate;
 }
