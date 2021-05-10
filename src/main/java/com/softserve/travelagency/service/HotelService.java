@@ -3,6 +3,7 @@ package com.softserve.travelagency.service;
 import com.softserve.travelagency.model.Hotel;
 
 import java.util.List;
+import java.util.Set;
 
 public interface HotelService {
     void addHotel(Hotel hotel);
@@ -17,5 +18,5 @@ public interface HotelService {
 
     void deleteHotelById(Long id);
 
-    List<String> getAllCountries();
+    Set<String> getAllCountries();
 }
