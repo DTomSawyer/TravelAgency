@@ -6,8 +6,8 @@ import com.softserve.travelagency.service.HotelService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -46,7 +46,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public List<String> getAllCountries(){
+    public Set<String> getAllCountries(){
        return hotelDAO.getAllCountries();
     }
 }

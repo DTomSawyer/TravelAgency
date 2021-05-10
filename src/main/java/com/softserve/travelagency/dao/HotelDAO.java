@@ -3,6 +3,7 @@ package com.softserve.travelagency.dao;
 import com.softserve.travelagency.model.Hotel;
 
 import java.util.List;
+import java.util.Set;
 
 public interface HotelDAO {
 
@@ -18,5 +19,5 @@ public interface HotelDAO {
 
     void deleteHotelById(Long id);
 
-    List<String> getAllCountries();
+    Set<String> getAllCountries();
 }

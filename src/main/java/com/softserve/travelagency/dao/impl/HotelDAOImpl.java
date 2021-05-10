@@ -9,7 +9,9 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 @AllArgsConstructor
@@ -86,15 +88,15 @@ public class HotelDAOImpl implements HotelDAO {
     }
 
     @Override
-    public List<String> getAllCountries() {
+    public Set<String> getAllCountries() {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
 
         Query query = session.createNativeQuery("select country from hotels");
-        List<String> allCountries = query.getResultList();
-
+        Set<String> allSet = new HashSet<>();
+        allSet.addAll(query.getResultList());
         transaction.commit();
 
-        return allCountries;
+        return allSet;
     }
 }

@@ -15,17 +15,24 @@
 <h2>All Users</h2>
 <table>
     <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Orders</th>
+        <th>Id</th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Name</th>
     </tr>
-    <c:forEach var="user" items="${users}">
+    <c:forEach var="hotel" items="${hotels}">
         <tr>
-            <td>${user.firstName}</td>
-            <td>${user.lastName}</td>
+            <td>${hotel.id}</td>
+            <td>${hotel.country}</td>
+            <td>${hotel.city}</td>
+            <td>${hotel.name}</td>
         </tr>
 
     </c:forEach>
+
+    </tr>
+    <td><input type="submit" value="Submit" /></td>
+    </tr>
 </table>
 </body>
 </html>
