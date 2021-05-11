@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<form:form  action="booking" method="get">
+<form:form  action="available" method="get">
     <table>
         </label for="country">Pick Country:</label>
 

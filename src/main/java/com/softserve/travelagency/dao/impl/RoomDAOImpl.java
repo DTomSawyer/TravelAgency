@@ -74,7 +74,6 @@ public class RoomDAOImpl implements RoomDAO {
                 "OR :departureDate BETWEEN O.arrivalDate AND O.departureDate " +
                 "OR O.arrivalDate BETWEEN :arrivalDate AND :departureDate " +
                 "OR O.departureDate BETWEEN :arrivalDate AND :departureDate)", Room.class);
-
         query.setParameter("country", country);
         query.setParameter("arrivalDate", arrivalDate);
         query.setParameter("departureDate", departureDate);
@@ -83,47 +82,4 @@ public class RoomDAOImpl implements RoomDAO {
         transaction.commit();
         return availableRooms;
     }
-
-
-/*@Override
-public List<Room> getAvailableRooms(LocalDate arrivalDate, LocalDate departureDate) {
-    Session session = sessionFactory.getCurrentSession();
-    Transaction transaction = session.beginTransaction();
-    Query query = session.createQuery("select r from Room r where r not" +
-            " in (" +
-            "select ro " +
-            "from Order ro " +
-            "where :arrivalDate between ro.arrivalDate and ro.departureDate " +
-            "and :departureDate between ro.arrivalDate and ro.departureDate " +
-            "and ro.arrivalDate between :arrivalDate and :departureDate " +
-            "and ro.departureDate between :arrivalDate and :departureDate)");
-    query.setParameter("arrivalDate", arrivalDate);
-    query.setParameter("departureDate", departureDate);
-    List<Room> room = query.getResultList();
-    transaction.commit();
-
-    return room;
-}*/
-
-    /*@Override
-    public List<Room> getAvailableRooms(LocalDate arrivalDate, LocalDate departureDate) {
-        Session session = sessionFactory.getCurrentSession();
-        Transaction transaction = session.beginTransaction();
-        Query query = session.createNativeQuery("select room_id from orders " +
-                "where :arrivalDate between arrivalDate and departureDate " +
-                "and :departureDate between arrivalDate and departureDate " +
-                "and arrivalDate between :arrivalDate and :departureDate " +
-                "and departureDate between :arrivalDate and :departureDate");
-        query.setParameter("arrivalDate", arrivalDate);
-        query.setParameter("departureDate", departureDate);
-        List<Long> roomId = query.getResultList();
-        List<Room> rooms = new ArrayList<>();
-        for(Long room : roomId){
-            rooms.add(session.get(Room.class,room));
-        }
-
-        transaction.commit();
-
-        return rooms;
-    }*/
 }
