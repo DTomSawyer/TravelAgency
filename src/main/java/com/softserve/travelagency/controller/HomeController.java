@@ -41,10 +41,10 @@ public class HomeController {
                           @RequestParam("arrivalDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate arrivalDate,
                           @RequestParam("departureDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate departureDate,
                           Model model) {
-        // підтягує ВСІ, треба виправити щоб підтягував по країнах
+        // підтягує ВСІ, треба виправити щоб підтягував по країнах додати хотел ІД
         model.addAttribute("available", roomService.getAvailableRooms(arrivalDate, departureDate));
-        model.addAttribute("arrivalDate", arrivalDate);
-        model.addAttribute("departureDate", departureDate);
-        return "booking";
+//        model.addAttribute("arrivalDate", arrivalDate);
+//        model.addAttribute("departureDate", departureDate);
+        return "ava-rooms";
     }
 }
