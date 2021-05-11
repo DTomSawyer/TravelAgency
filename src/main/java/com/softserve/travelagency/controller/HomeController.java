@@ -6,6 +6,7 @@ import com.softserve.travelagency.model.Room;
 import com.softserve.travelagency.service.HotelService;
 import com.softserve.travelagency.service.OrderService;
 import com.softserve.travelagency.service.RoomService;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -55,5 +56,23 @@ public class HomeController {
                           Model model) {
         room.getHotel();
         return "home";
+    }
+
+    @GetMapping("/book/{hotelId}/{roomId}")
+    public String bookRoom(@PathVariable Long hotelId, @PathVariable Long roomId, Model model) {
+        LocalDate arrivalDate = (LocalDate) model.getAttribute("arrivalDate");
+        LocalDate departureDate = (LocalDate) model.getAttribute("departureDate");
+
+        Order order = Order.builder()
+                .hotel(hotelService.getHotelById(hotelId))
+                .room(roomService.getRoomById(roomId))
+                .arrivalDate(arrivalDate)
+                .departureDate(departureDate)
+                .orderDate(LocalDate.now())
+                .build();
+
+        orderService.addOrder(order);
+
+        return "book-confirm";
     }
 }

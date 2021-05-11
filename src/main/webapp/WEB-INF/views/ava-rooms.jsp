@@ -45,7 +45,7 @@
                 <td>${room.price}</td>
                 <td>${room.number}</td>
                 <td>
-                    <a href="${bookLink}">Make book<a/>
+                    <a href="/book/${room.hotel.id}/${room.id}">Make book<a/>
                 </td>
             </tr>
 

@@ -66,7 +66,8 @@ public class RoomDAOImpl implements RoomDAO {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
 
-        javax.persistence.Query query = session.createQuery("FROM Room R " +
+        javax.persistence.Query query =
+                session.createQuery("FROM Room R " +
                 "WHERE R.hotel.country = :country " +
                 "AND R.id NOT IN " +
                 "(SELECT O.room.id FROM Order O " +
