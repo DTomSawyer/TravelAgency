@@ -44,6 +44,7 @@ public class HomeController {
         model.addAttribute("available", roomService.getAvailableRooms(country, arrivalDate, departureDate));
         model.addAttribute("arrivalDate", arrivalDate);
         model.addAttribute("departureDate", departureDate);
+        model.addAttribute("country", country);
 
         return "ava-rooms";
     }

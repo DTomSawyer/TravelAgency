@@ -12,34 +12,46 @@
     <body>
     <table border="1">
         <thead>
+        <h3>Book your room</h3>
+
+        <a>Available rooms in ${country} between</a>
+        <input name="arrivalDate" value="${arrivalDate}" readonly />
+        <a>and</a>
+        <input name="arrivalDate" value="${departureDate}" readonly />
+        <br/>
+        <a href="/home">Change Dates</a>
+
         <tr>
             <th>Id</th>
-            <th>Number</th>
             <th>Hotel</th>
+            <th>City</th>
             <th>Type</th>
             <th>Price</th>
+            <th>Number</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach var="room" items="${available}">
             <c:url var="bookLink" value="/booking">
-                <c:param name="room" value="${room}"/>
+                <c:param name="room" value="${roomId}"/>
 <%--                roomId ? --%>
             </c:url>
             <tr>
                 <td>${room.id}</td>
-                <td>${room.number}</td>
-                <td>${room.hotel}</td>
+                <td>${room.hotel.name}</td>
+                <td>${room.hotel.city}</td>
                 <td>${room.type}</td>
                 <td>${room.price}</td>
+                <td>${room.number}</td>
                 <td>
                     <a href="${bookLink}">Make book<a/>
                 </td>
             </tr>
+
         </c:forEach>
         </tbody>
     </table>
-    <a href="/home">Change Dates</a>
     </body>
     </html>
 </form:form>
