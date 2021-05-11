@@ -9,13 +9,12 @@
     <title>Title</title>
 </head>
 <body>
-<c:forEach var="rooms" items="${getAll}">
+<c:forEach var="rooms" items="${available}">
     <tr>
-        <td>${rooms.hotel}</td>
         <td>${rooms.id}</td>
         <td>${rooms.number}</td>
-        <td>${rooms.orders}</td>
-        <td>${rooms.toString()}</td>
+        <td>${rooms.type}</td>
+        <td>${rooms.price}</td>
     </tr>
 </c:forEach>
 </body>
