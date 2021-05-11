@@ -17,7 +17,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -28,7 +30,7 @@ import java.util.Locale;
 
 @RequestMapping("/home")
 @Controller
-
+@AllArgsConstructor
 public class UserController {
 
     private UserService userService;
@@ -36,79 +38,56 @@ public class UserController {
     private HotelService hotelService;
     private RoomService roomService;
 
-    @Autowired
-    public UserController(UserService userService, OrderService orderService, HotelService hotelService, RoomService roomService) {
-        this.userService = userService;
-        this.orderService = orderService;
-        this.hotelService = hotelService;
-        this.roomService = roomService;
-    }
-
-//    @GetMapping("/add")
-//    public String addNewHotel(Model model){
-//        model.addAttribute("hotel",new Hotel());
-//        return "register";
-//    }
-
-//
-//    @PostMapping("/saveNew")
-//    public String addnewHotel(@ModelAttribute Hotel hotel) {
-//        hotelService.addHotel(hotel);
-//        return "redirect:/all";
-//    }
-
     @GetMapping("/all")
-    public String showAllUsers(Model model) {
-        List<User> users = userService.getAllUsers();
-        model.addAttribute("users", users);
+    public String showAllUsers(Model model){
+        model.addAttribute("users",userService.getAllUsers());
         return "all-users";
     }
 
-
-    @ResponseBody
+    /*@ResponseBody
     @GetMapping(value = "/add")
     public String addOrder() {
         User user = User.builder()
-                .email("kwintiuk12ee@icloud.com")
-                .firstName("Nastyaeee")
-                .lastName("Kwintiukeee")
-                .password("1234567833390")
+                .email("kwintiuk@icloud.com")
+                .firstName("Nastya")
+                .lastName("Kwintiuk")
+                .password("1234567890")
                 .role(Role.USER)
                 .build();
 
-        userService.saveUser(user);
-//
-//        Hotel hotel = Hotel.builder()
-//                .name("Rixos")
-//                .country("Egypt")
-//                .city("Hurgada")
-//                .build();
-//
-//        hotelService.addHotel(hotel);
-//
-////        Room room = Room.builder()
-////                .hotel(hotelService.getHotelById(1L))
-////                .number(521)
-////                .type(RoomType.DELUXE)
-////                .price(400.0)
-////                .build();
-////
-////        roomService.saveRoom(room);
-////
-////        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-////
-////        Order order = Order.builder()
-////                .user(userService.getUserById(1L))
-////                .hotel(hotelService.getHotelById(1L))
-////                .arrivalDate(LocalDate.parse("20-05-2021", df))
-////                .departureDate(LocalDate.parse("23-05-2021", df))
-////                .orderDate(LocalDate.now())
-////                .rooms(List.of(roomService.getRoomById(4L)))
-////                .build();
-////
-////        orderService.addOrder(order);
-////
-////        orderService.getOrderById(1L);
+        //userService.saveUser(user);
+
+        Hotel hotel = Hotel.builder()
+                .name("Rixos")
+                .country("Egypt")
+                .city("Hurgada")
+                .build();
+
+        //hotelService.addHotel(hotel);
+
+        Room room = Room.builder()
+                .hotel(hotelService.getHotelById(1L))
+                .number(521)
+                .type(RoomType.DELUXE)
+                .price(400.0)
+                .build();
+
+        //roomService.saveRoom(room);
+
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        Order order = Order.builder()
+                .user(userService.getUserById(1L))
+                .hotel(hotelService.getHotelById(1L))
+                .arrivalDate(LocalDate.parse("20-05-2021", df))
+                .departureDate(LocalDate.parse("23-05-2021", df))
+                .orderDate(LocalDate.now())
+                .rooms(List.of(roomService.getRoomById(4L)))
+                .build();
+
+        //orderService.addOrder(order);
+
+        //orderService.getOrderById(1L);
         return "Success";
-    }
+    }*/
 }

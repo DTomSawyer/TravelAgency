@@ -32,12 +32,9 @@ public class Order {
     private Hotel hotel;
 
     @NotNull
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "order_rooms",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "room_id"))
-    private List<Room> rooms;
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private Room room;
 
     @NotNull
     @Column(name = "arrival_date")

@@ -38,6 +38,7 @@ public class Room {
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
-    @ManyToMany(mappedBy = "rooms")
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "room")
     private List<Order> orders;
 }
