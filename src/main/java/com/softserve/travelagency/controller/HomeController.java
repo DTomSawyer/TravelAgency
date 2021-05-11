@@ -6,7 +6,7 @@ import com.softserve.travelagency.model.Room;
 import com.softserve.travelagency.service.HotelService;
 import com.softserve.travelagency.service.OrderService;
 import com.softserve.travelagency.service.RoomService;
-import org.dom4j.rule.Mode;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -17,18 +17,12 @@ import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/")
+@AllArgsConstructor
 public class HomeController {
 
     RoomService roomService;
     OrderService orderService;
     HotelService hotelService;
-
-    @Autowired
-    HomeController(RoomService roomService, OrderService orderService, HotelService hotelService) {
-        this.roomService = roomService;
-        this.orderService = orderService;
-        this.hotelService = hotelService;
-    }
 
     @GetMapping("/home")
     public String countries(Model model) {
@@ -50,42 +44,10 @@ public class HomeController {
         return "ava-rooms";
     }
 
-    @PostMapping("/booking")
-    public String booking(@ModelAttribute("room") Room room,
-//                          @RequestParam("arrivalDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate arrivalDate,
-//                          @RequestParam("departureDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate departureDate,
-                          Model model) {
-        room.getHotel();
-        return "home";
-    }
-
-    /*@GetMapping("/book/{hotelId}/{roomId}")
-    public String bookRoom(@PathVariable Long hotelId, @PathVariable Long roomId,
-                           @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
-                           @ModelAttribute("arrivalDate") LocalDate arrivalDate,
-                           @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
-                               @ModelAttribute("departureDate") LocalDate departureDate,
-                           Model model) {
-
-        Order order = Order.builder()
-                .hotel(hotelService.getHotelById(hotelId))
-                .room(roomService.getRoomById(roomId))
-                .arrivalDate(arrivalDate)
-                .departureDate(departureDate)
-                .orderDate(LocalDate.now())
-                .build();
-
-        model.addAttribute("order", order);
-
-        //orderService.addOrder(order);
-
-        return "book-confirm";
-    }*/
-
     @PostMapping("/book")
     public String bookRoom(@RequestParam Long roomId,
-                           @RequestParam LocalDate arrivalDate,
-                           @RequestParam LocalDate departureDate,
+                           @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate arrivalDate,
+                           @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate departureDate,
                            Model model) {
 
         Room room = roomService.getRoomById(roomId);
@@ -93,8 +55,8 @@ public class HomeController {
         Order order = Order.builder()
                 .hotel(room.getHotel())
                 .room(room)
-                .arrivalDate(arrivalDate)
-                .departureDate(departureDate)
+                .arrivalDate(arrivalDate/*LocalDate.parse(arrivalDate)*/)
+                .departureDate(departureDate/*LocalDate.parse(departureDate)*/)
                 .orderDate(LocalDate.now())
                 .build();
 
@@ -102,6 +64,6 @@ public class HomeController {
 
         orderService.addOrder(order);
 
-        return "book-confirm";
+        return "order";
     }
 }
