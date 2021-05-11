@@ -9,7 +9,11 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
+
 import java.util.HashSet;
+
+import java.time.LocalDate;
+
 import java.util.List;
 import java.util.Set;
 
