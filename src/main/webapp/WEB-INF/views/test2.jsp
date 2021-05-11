@@ -8,25 +8,29 @@
     <table>
         </label for="country">Pick Country:</label>
 
+
         <select name="country">
             <c:forEach var="country" items="${countries}">
                 <option value="${country}">"${country}"</option>
             </c:forEach>
         </select>
-            <%--        <form>--%>
-        <div class="form-group">
-                <%--@declare id="inputdate"--%><label for="inputDate">Arrival Date:
-        </label>
-            <input type="date" class="form-control" name="arrivalDate">
-        </div>
-            <%--        </form>--%>
-            <%--        <form>--%>
-        <div class="form-group">
-                <%--@declare id="inputdate"--%><label for="inputDate">Departure Date:
-        </label>
-            <input type="date" class="form-control" name="departureDate">
-        </div>
-            <%--        </form>--%>
+
+<%--        <form>--%>
+            <div class="form-group">
+                    <%--@declare id="inputdate"--%><label for="inputDate">Arrival Date:
+            </label>
+                <input type="date" class="form-control">
+            </div>
+<%--        </form>--%>
+<%--        <form>--%>
+            <div class="form-group">
+                    <%--@declare id="inputdate"--%><label for="inputDate">Departure Date:
+            </label>
+                <input type="date" class="form-control">
+            </div>
+<%--        </form>--%>
+
+
         </tr>
         <td><input type="submit" value="Submit" /></td>
         </tr>

@@ -38,8 +38,8 @@ public class HomeController {
 
     @GetMapping("/booking")
     public String booking(@RequestParam("country") String country,
-                          @RequestParam("arrivalDate") LocalDate arrivalDate,
-                          @RequestParam("departureDate") LocalDate departureDate,
+                          @RequestParam("arrivalDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate arrivalDate,
+                          @RequestParam("departureDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate departureDate,
                           Model model) {
         // підтягує ВСІ, треба виправити щоб підтягував по країнах
         model.addAttribute("available", roomService.getAvailableRooms(arrivalDate, departureDate));
