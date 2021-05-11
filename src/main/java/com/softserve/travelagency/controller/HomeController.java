@@ -49,6 +49,7 @@ public class HomeController {
 
         return "ava-rooms";
     }
+
     @PostMapping("/booking")
     public String booking(@ModelAttribute("room") Room room,
 //                          @RequestParam("arrivalDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate arrivalDate,
@@ -82,11 +83,9 @@ public class HomeController {
     }*/
 
     @PostMapping("/book")
-    public String bookRoom(/*@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
-                           @ModelAttribute("arrivalDate") LocalDate arrivalDate,
-                           @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
-                           @ModelAttribute("departureDate") LocalDate departureDate,*/
-                           @RequestParam Long roomId,
+    public String bookRoom(@RequestParam Long roomId,
+                           @RequestParam LocalDate arrivalDate,
+                           @RequestParam LocalDate departureDate,
                            Model model) {
 
         Room room = roomService.getRoomById(roomId);
@@ -94,8 +93,8 @@ public class HomeController {
         Order order = Order.builder()
                 .hotel(room.getHotel())
                 .room(room)
-                .arrivalDate(LocalDate.now()/*arrivalDate*/)
-                .departureDate(LocalDate.now()/*departureDate*/)
+                .arrivalDate(arrivalDate)
+                .departureDate(departureDate)
                 .orderDate(LocalDate.now())
                 .build();
 

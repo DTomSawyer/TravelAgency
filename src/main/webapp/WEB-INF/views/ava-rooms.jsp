@@ -35,6 +35,8 @@
 
         <c:url var="bookLink" value="/book">
             <c:param name="roomId" value="${room.id}"/>
+            <c:param name="arrivalDate" value="${arrivalDate}"/>
+            <c:param name="departureDate" value="${departureDate}"/>
         </c:url>
 
         <sf:form method="post" action="${bookLink}">
