@@ -15,9 +15,11 @@
 <%--</form>--%>
 
 <form method="post">
-<h3>List</h3>
+<h3>WELCOME</h3>
 <table border="1">
-        <th>Pick country</th>
+
+    </label for="country">Pick Country:</label>
+
 
 
     <select name="country">
@@ -26,7 +28,20 @@
         </c:forEach>
     </select>
 </table>
-
+<form>
+    <div class="form-group">
+    <%--@declare id="inputdate"--%><label for="inputDate">Arrival Date:
+    </label>
+        <input type="date" class="form-control">
+    </div>
+</form>
+    <form>
+        <div class="form-group">
+            <%--@declare id="inputdate"--%><label for="inputDate">Departure Date:
+        </label>
+            <input type="date" class="form-control">
+        </div>
+    </form>
 <input type="submit" value="Submit" />
 
 <a href="/hotel/management">Management</a>
