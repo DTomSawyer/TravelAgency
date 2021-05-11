@@ -58,10 +58,13 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/book/{hotelId}/{roomId}")
-    public String bookRoom(@PathVariable Long hotelId, @PathVariable Long roomId, Model model) {
-        LocalDate arrivalDate = (LocalDate) model.getAttribute("arrivalDate");
-        LocalDate departureDate = (LocalDate) model.getAttribute("departureDate");
+    /*@GetMapping("/book/{hotelId}/{roomId}")
+    public String bookRoom(@PathVariable Long hotelId, @PathVariable Long roomId,
+                           @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+                           @ModelAttribute("arrivalDate") LocalDate arrivalDate,
+                           @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+                               @ModelAttribute("departureDate") LocalDate departureDate,
+                           Model model) {
 
         Order order = Order.builder()
                 .hotel(hotelService.getHotelById(hotelId))
@@ -70,6 +73,33 @@ public class HomeController {
                 .departureDate(departureDate)
                 .orderDate(LocalDate.now())
                 .build();
+
+        model.addAttribute("order", order);
+
+        //orderService.addOrder(order);
+
+        return "book-confirm";
+    }*/
+
+    @PostMapping("/book")
+    public String bookRoom(/*@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+                           @ModelAttribute("arrivalDate") LocalDate arrivalDate,
+                           @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+                           @ModelAttribute("departureDate") LocalDate departureDate,*/
+                           @RequestParam Long roomId,
+                           Model model) {
+
+        Room room = roomService.getRoomById(roomId);
+
+        Order order = Order.builder()
+                .hotel(room.getHotel())
+                .room(room)
+                .arrivalDate(LocalDate.now()/*arrivalDate*/)
+                .departureDate(LocalDate.now()/*departureDate*/)
+                .orderDate(LocalDate.now())
+                .build();
+
+        model.addAttribute("order", order);
 
         orderService.addOrder(order);
 
