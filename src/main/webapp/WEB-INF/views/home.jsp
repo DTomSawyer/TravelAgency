@@ -21,7 +21,6 @@
     </label for="country">Pick Country:</label>
 
 
-
     <select name="country">
         <c:forEach var="country" items="${countries}">
             <option value="${country}">"${country}"</option>
