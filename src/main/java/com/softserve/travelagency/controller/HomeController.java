@@ -2,6 +2,7 @@ package com.softserve.travelagency.controller;
 
 
 import com.softserve.travelagency.model.Order;
+import com.softserve.travelagency.model.Room;
 import com.softserve.travelagency.service.HotelService;
 import com.softserve.travelagency.service.OrderService;
 import com.softserve.travelagency.service.RoomService;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Controller
@@ -36,15 +36,23 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/booking")
+    @GetMapping("/available")
     public String booking(@RequestParam("country") String country,
                           @RequestParam("arrivalDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate arrivalDate,
                           @RequestParam("departureDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate departureDate,
                           Model model) {
-        // підтягує ВСІ, треба виправити щоб підтягував по країнах додати хотел ІД
         model.addAttribute("available", roomService.getAvailableRooms(country, arrivalDate, departureDate));
-//        model.addAttribute("arrivalDate", arrivalDate);
-//        model.addAttribute("departureDate", departureDate);
+        model.addAttribute("arrivalDate", arrivalDate);
+        model.addAttribute("departureDate", departureDate);
+
         return "ava-rooms";
+    }
+    @PostMapping("/booking")
+    public String booking(@ModelAttribute("room") Room room,
+//                          @RequestParam("arrivalDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate arrivalDate,
+//                          @RequestParam("departureDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate departureDate,
+                          Model model) {
+        room.getHotel();
+        return "home";
     }
 }
