@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/")
@@ -55,9 +56,9 @@ public class HomeController {
         Order order = Order.builder()
                 .hotel(room.getHotel())
                 .room(room)
-                .arrivalDate(arrivalDate/*LocalDate.parse(arrivalDate)*/)
-                .departureDate(departureDate/*LocalDate.parse(departureDate)*/)
-                .orderDate(LocalDate.now())
+                .arrivalDate(arrivalDate)
+                .departureDate(departureDate)
+                .orderDate(LocalDateTime.now())
                 .build();
 
         model.addAttribute("order", order);
