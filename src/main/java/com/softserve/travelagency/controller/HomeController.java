@@ -57,17 +57,17 @@ public class HomeController {
 
         Room room = roomService.getRoomById(roomId);
 
-        Order order = Order.builder()
-                .hotel(room.getHotel())
-                .room(room)
-                .arrivalDate(arrivalDate)
-                .departureDate(departureDate)
-                .orderDate(LocalDateTime.now())
-                .build();
-
-        model.addAttribute("order", order);
-
-        orderService.addOrder(order);
+//        Order order = Order.builder()
+//                .hotel(room.getHotel())
+//                .room(room)
+//                .arrivalDate(arrivalDate)
+//                .departureDate(departureDate)
+//                .orderDate(LocalDateTime.now())
+//                .build();
+//
+//        model.addAttribute("order", order);
+//
+//        orderService.addOrder(order);
 
         return "order";
     }
