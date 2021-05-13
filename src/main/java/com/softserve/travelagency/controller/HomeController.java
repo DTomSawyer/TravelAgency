@@ -9,6 +9,7 @@ import com.softserve.travelagency.service.RoomService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/home")
 @AllArgsConstructor
 public class HomeController {
 
@@ -25,7 +26,8 @@ public class HomeController {
     OrderService orderService;
     HotelService hotelService;
 
-    @GetMapping("/home")
+    @GetMapping("/booking")
+    @PreAuthorize("hasAuthority('developers:book')")
     public String countries(Model model) {
         model.addAttribute("countries", hotelService.getAllCountries());
 
@@ -33,6 +35,7 @@ public class HomeController {
     }
 
     @GetMapping("/available")
+    @PreAuthorize("hasAuthority('developers:book')")
     public String booking(@RequestParam("country") String country,
                           @RequestParam("arrivalDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate arrivalDate,
                           @RequestParam("departureDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate departureDate,
@@ -46,6 +49,7 @@ public class HomeController {
     }
 
     @PostMapping("/book")
+    @PreAuthorize("hasAuthority('developers:book')")
     public String bookRoom(@RequestParam Long roomId,
                            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate arrivalDate,
                            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate departureDate,

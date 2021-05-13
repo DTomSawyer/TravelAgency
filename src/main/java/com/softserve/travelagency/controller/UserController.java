@@ -39,8 +39,8 @@ public class UserController {
     private RoomService roomService;
 
     @GetMapping("/all")
-    public String showAllUsers(Model model){
-        model.addAttribute("users",userService.getAllUsers());
+    public String showAllUsers(Model model) {
+        model.addAttribute("users", userService.getAllUsers());
         return "all-users";
     }
 
