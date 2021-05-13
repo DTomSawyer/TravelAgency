@@ -40,6 +40,7 @@
         </c:url>
 
         <sf:form method="post" action="${bookLink}">
+            <tr>
             <td>${room.id}</td>
             <td>${room.hotel.name}</td>
             <td>${room.hotel.city}</td>
@@ -49,6 +50,7 @@
             <td>
                 <button type="submit">Book</button>
             </td>
+            </tr>
         </sf:form>
 
     </c:forEach>
