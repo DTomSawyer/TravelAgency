@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AuthController {
 
     @GetMapping("/login")
-    public String getLoginPage(){
+    public String getLoginPage() {
         return "login";
     }
+
     @GetMapping("/success")
-    public String getSuccessPage(){
+    public String getSuccessPage() {
         return "success";
     }
 }
