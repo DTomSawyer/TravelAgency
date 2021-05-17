@@ -24,7 +24,7 @@
         <p>
             <label for="email" class="sr-only">Email</label>
             <input type="text" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
-            <form:errors path = "email" cssClass = "error" />
+            <form:errors path = "*" cssClass = "error" />
         </p>
         <p>
             <label for="firstName" class="sr-only">First name</label>
