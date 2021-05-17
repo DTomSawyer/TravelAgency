@@ -33,11 +33,7 @@
     <tbody>
     <c:forEach var="room" items="${available}">
 
-<<<<<<< HEAD
-        <c:url var="bookLink" value="home/book">
-=======
         <c:url var="bookLink" value="/home/book">
->>>>>>> main
             <c:param name="roomId" value="${room.id}"/>
             <c:param name="arrivalDate" value="${arrivalDate}"/>
             <c:param name="departureDate" value="${departureDate}"/>
@@ -45,15 +41,15 @@
 
         <sf:form method="post" action="${bookLink}">
             <tr>
-            <td>${room.id}</td>
-            <td>${room.hotel.name}</td>
-            <td>${room.hotel.city}</td>
-            <td>${room.type}</td>
-            <td>${room.price}</td>
-            <td>${room.number}</td>
-            <td>
-                <button type="submit">Book</button>
-            </td>
+                <td>${room.id}</td>
+                <td>${room.hotel.name}</td>
+                <td>${room.hotel.city}</td>
+                <td>${room.type}</td>
+                <td>${room.price}</td>
+                <td>${room.number}</td>
+                <td>
+                    <button type="submit">Book</button>
+                </td>
             </tr>
         </sf:form>
 

@@ -1,3 +1,7 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: mac
@@ -20,6 +24,7 @@
         <p>
             <label for="email" class="sr-only">Email</label>
             <input type="text" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
+            <form:errors path = "email" cssClass = "error" />
         </p>
         <p>
             <label for="firstName" class="sr-only">First name</label>

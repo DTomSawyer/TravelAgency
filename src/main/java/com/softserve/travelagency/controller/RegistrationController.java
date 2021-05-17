@@ -3,15 +3,17 @@ package com.softserve.travelagency.controller;
 import com.softserve.travelagency.model.User;
 import com.softserve.travelagency.model.util.Status;
 import com.softserve.travelagency.service.UserService;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 @AllArgsConstructor
 @Controller

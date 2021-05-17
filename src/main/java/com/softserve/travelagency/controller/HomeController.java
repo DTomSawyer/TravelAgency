@@ -2,17 +2,24 @@ package com.softserve.travelagency.controller;
 
 import com.softserve.travelagency.model.Order;
 import com.softserve.travelagency.model.Room;
+import com.softserve.travelagency.model.User;
+import com.softserve.travelagency.security.SecurityUser;
+import com.softserve.travelagency.security.UserDetailsServiceImpl;
 import com.softserve.travelagency.service.HotelService;
 import com.softserve.travelagency.service.OrderService;
 import com.softserve.travelagency.service.RoomService;
+import com.softserve.travelagency.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -21,9 +28,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class HomeController {
 
+    private UserService userService;
     private RoomService roomService;
     private OrderService orderService;
     private HotelService hotelService;
+
+
 
     @GetMapping("/booking")
     @PreAuthorize("hasAuthority('developers:book')")
@@ -51,11 +61,15 @@ public class HomeController {
     public String bookRoom(@RequestParam Long roomId,
                            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate arrivalDate,
                            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate departureDate,
-                           Model model) {
+                           Model model,
+                           Principal principal) {
 
         Room room = roomService.getRoomById(roomId);
 
+
+        User user = userService.findByEmail(principal.getName());
         Order order = Order.builder()
+                .user(user)
                 .hotel(room.getHotel())
                 .room(room)
                 .arrivalDate(arrivalDate)
