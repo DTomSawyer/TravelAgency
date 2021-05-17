@@ -11,15 +11,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-  <title>Login</title>
+    <title>Login</title>
 </head>
 <body>
 <div class="container">
     <form class="form-signin" method="post" action="/auth/login">
         <h2 class="form-signin-heading">Please sign in</h2>
         <p>
-            <label for="email" class="sr-only">Email</label>
-            <input type="text" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
         </p>
         <p>
             <label for="password" class="sr-only">Password</label>
@@ -28,6 +28,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 </div>
+
 <p><a href="/registration/register">Sign up</a></p>
 </body>
 </html>
