@@ -3,7 +3,6 @@ package com.softserve.travelagency.controller;
 import com.softserve.travelagency.model.User;
 import com.softserve.travelagency.model.util.Status;
 import com.softserve.travelagency.service.UserService;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 @AllArgsConstructor
 @Controller
@@ -29,7 +30,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/register")
-    public String addUser(@ModelAttribute("user") @Validated User user, BindingResult bindingResult, Model model) {
+    public String addUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             return "register";

@@ -1,13 +1,13 @@
 package com.softserve.travelagency.model;
 
 import com.softserve.travelagency.model.util.RoomType;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
