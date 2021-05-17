@@ -17,14 +17,14 @@
         <div class="form-group">
                 <%--@declare id="inputdate"--%><label for="inputDate">Arrival Date:
         </label>
-            <input type="date" class="form-control" name="arrivalDate">
+            <input type="date" class="form-control" name="arrivalDate" required>
         </div>
             <%--        </form>--%>
             <%--        <form>--%>
         <div class="form-group">
                 <%--@declare id="inputdate"--%><label for="inputDate">Departure Date:
         </label>
-            <input type="date" class="form-control" name="departureDate">
+            <input type="date" class="form-control" name="departureDate" required>
         </div>
             <%--        </form>--%>
         </tr>
