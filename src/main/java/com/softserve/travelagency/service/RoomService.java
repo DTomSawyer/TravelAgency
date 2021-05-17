@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface RoomService {
-    public void saveRoom(Room room);
+    public void addRoom(Room room);
 
     public Room getRoomById(Long id);
 
