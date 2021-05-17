@@ -1,6 +1,7 @@
 package com.softserve.travelagency.controller;
 
 import com.softserve.travelagency.model.User;
+import com.softserve.travelagency.model.util.Status;
 import com.softserve.travelagency.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -36,6 +37,7 @@ public class RegistrationController {
             model.addAttribute("passwordError", "Passwords don't match");
             return "registration";
         }*/
+        user.setStatus(Status.ACTIVE);
         if (!userService.saveUser(user)) {
             //model.addAttribute("usernameError", "User already exists!");
             return "register";
