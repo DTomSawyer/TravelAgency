@@ -33,7 +33,11 @@
     <tbody>
     <c:forEach var="room" items="${available}">
 
+<<<<<<< HEAD
         <c:url var="bookLink" value="home/book">
+=======
+        <c:url var="bookLink" value="/home/book">
+>>>>>>> main
             <c:param name="roomId" value="${room.id}"/>
             <c:param name="arrivalDate" value="${arrivalDate}"/>
             <c:param name="departureDate" value="${departureDate}"/>

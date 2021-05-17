@@ -30,7 +30,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public void saveRoom(Room room) {
+    public void addRoom(Room room) {
     roomDAO.saveRoom(room);
     }
 
