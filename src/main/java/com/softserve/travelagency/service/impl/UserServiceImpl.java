@@ -5,28 +5,23 @@ import com.softserve.travelagency.model.User;
 import com.softserve.travelagency.model.util.Role;
 import com.softserve.travelagency.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
-    private UserDAO userDAO;
+
+    private final UserDAO userDAO;
 
     @Override
-    public List<User> getAllUsers() {
-        return userDAO.getAllUsers();
-    }
+    public boolean addUser(User user) {
+        Optional<User> userDB = userDAO.getUserByEmail(user.getEmail());
 
-    @Override
-    public boolean saveUser(User user) {
-        User userDB = userDAO.findByEmail(user.getEmail());
-
-        if(userDB != null) {
+        if (userDB.isPresent()) {
             return false;
         }
 
@@ -38,22 +33,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(Long id) {
+    public Optional<User> getUserById(Long id) {
         return userDAO.getUserById(id);
     }
 
     @Override
-    public void deleteUser(Long id) {
-        userDAO.delete(id);
+    public Optional<User> getUserByEmail(String email) {
+        return userDAO.getUserByEmail(email);
     }
 
     @Override
-    public User findByEmail(String email) {
-        return userDAO.findByEmail(email);
+    public List<User> getAllUsers() {
+        return userDAO.getAllUsers();
     }
-//    @Transactional
-//    @Override
-//    public void deleteUser2(User user) {
-//        userDAO.delete(user);
-//    }
+
+    @Override
+    public void deleteUser(Long id) {
+        userDAO.deleteUser(id);
+    }
 }

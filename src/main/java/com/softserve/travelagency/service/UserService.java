@@ -4,17 +4,17 @@ import com.softserve.travelagency.model.User;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
-    public List<User> getAllUsers();
 
-    public boolean saveUser(User user);
+    boolean addUser(User user);
 
-    public User getUserById(Long id);
+    Optional<User> getUserById(Long id);
 
-    public void deleteUser(Long id);
+    Optional<User> getUserByEmail(String email);
 
-    public User findByEmail(String email);
+    List<User> getAllUsers();
 
-//    public void deleteUser2(User user);
+    void deleteUser(Long id);
 }

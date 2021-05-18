@@ -3,18 +3,13 @@ package com.softserve.travelagency.controller;
 import com.softserve.travelagency.model.Order;
 import com.softserve.travelagency.model.Room;
 import com.softserve.travelagency.model.User;
-import com.softserve.travelagency.security.SecurityUser;
-import com.softserve.travelagency.security.UserDetailsServiceImpl;
 import com.softserve.travelagency.service.HotelService;
 import com.softserve.travelagency.service.OrderService;
 import com.softserve.travelagency.service.RoomService;
 import com.softserve.travelagency.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,18 +17,17 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/home")
 @AllArgsConstructor
 public class HomeController {
 
-    private UserService userService;
-    private RoomService roomService;
-    private OrderService orderService;
-    private HotelService hotelService;
-
-
+    private final UserService userService;
+    private final RoomService roomService;
+    private final OrderService orderService;
+    private final HotelService hotelService;
 
     @GetMapping("/booking")
     @PreAuthorize("hasAuthority('developers:book')")
@@ -64,23 +58,24 @@ public class HomeController {
                            Model model,
                            Principal principal) {
 
-        Room room = roomService.getRoomById(roomId);
+        Optional<Room> room = roomService.getRoomById(roomId);
 
+        if(room.isPresent()) {
+            Optional<User> user = userService.getUserByEmail(principal.getName());
 
-        User user = userService.findByEmail(principal.getName());
-        Order order = Order.builder()
-                .user(user)
-                .hotel(room.getHotel())
-                .room(room)
-                .arrivalDate(arrivalDate)
-                .departureDate(departureDate)
-                .orderDate(LocalDateTime.now())
-                .build();
+            Order order = Order.builder()
+                    .user(user.get())
+                    .hotel(room.get().getHotel())
+                    .room(room.get())
+                    .arrivalDate(arrivalDate)
+                    .departureDate(departureDate)
+                    .orderDate(LocalDateTime.now())
+                    .build();
 
-        model.addAttribute("order", order);
+            model.addAttribute("order", order);
 
-        orderService.addOrder(order);
-
+            orderService.addOrder(order);
+        }
         return "order";
     }
 }

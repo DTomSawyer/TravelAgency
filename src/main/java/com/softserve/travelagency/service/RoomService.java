@@ -3,16 +3,18 @@ package com.softserve.travelagency.service;
 import com.softserve.travelagency.model.Room;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface RoomService {
-    public void addRoom(Room room);
 
-    public Room getRoomById(Long id);
+    void addRoom(Room room);
 
-    public List<Room> getAllRooms();
+    Optional<Room> getRoomById(Long id);
 
-    public List<Room> getAvailableRooms(String country, LocalDate arrivalDate,
-                                        LocalDate departureDate);
+    List<Room> getAllRooms();
 
-    public void deleteRoom(Long id);
+    List<Room> getAvailableRooms(String country, LocalDate arrivalDate,
+                                 LocalDate departureDate);
+
+    void deleteRoom(Long id);
 }

@@ -8,10 +8,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service("userDetailsServiceImpl")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final UserDAO userDAO; //????
+    private final UserDAO userDAO;
 
     @Autowired
     public UserDetailsServiceImpl(UserDAO userDAO) {
@@ -20,9 +22,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userDAO.findByEmail(email);
-        if (user == null)
+        Optional<User> user = userDAO.getUserByEmail(email);
+
+        if (user.isEmpty()) {
             throw new UsernameNotFoundException("User not found");
-        return SecurityUser.fromUser(user);
+        }
+        return SecurityUser.fromUser(user.get());
     }
 }

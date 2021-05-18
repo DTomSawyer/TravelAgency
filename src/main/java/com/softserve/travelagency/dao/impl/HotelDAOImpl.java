@@ -16,7 +16,7 @@ import java.util.*;
 @AllArgsConstructor
 public class HotelDAOImpl implements HotelDAO {
 
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     @Override
     public void saveHotel(Hotel hotel) {
@@ -57,7 +57,7 @@ public class HotelDAOImpl implements HotelDAO {
         } catch (NullPointerException npe) {
             return new ArrayList<>();
         } finally {
-            session.getTransaction().commit();
+            transaction.commit();
         }
     }
 
@@ -74,7 +74,7 @@ public class HotelDAOImpl implements HotelDAO {
         } catch (NullPointerException npe) {
             return new ArrayList<>();
         } finally {
-            session.getTransaction().commit();
+            transaction.commit();
         }
     }
 
@@ -90,7 +90,7 @@ public class HotelDAOImpl implements HotelDAO {
         } catch (NullPointerException npe) {
             return new ArrayList<>();
         } finally {
-            session.getTransaction().commit();
+            transaction.commit();
         }
     }
 
@@ -117,7 +117,7 @@ public class HotelDAOImpl implements HotelDAO {
         } catch (NullPointerException npe) {
             return new HashSet<>();
         } finally {
-            session.getTransaction().commit();
+            transaction.commit();
         }
     }
 }

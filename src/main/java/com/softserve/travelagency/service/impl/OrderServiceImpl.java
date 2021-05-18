@@ -6,14 +6,14 @@ import com.softserve.travelagency.service.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
-    private OrderDAO orderDAO;
+    private final OrderDAO orderDAO;
 
     @Override
     public void addOrder(Order order) {
@@ -21,7 +21,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getOrderById(Long id) {
+    public Optional<Order> getOrderById(Long id) {
         return orderDAO.getOrderById(id);
     }
 
@@ -37,6 +37,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void deleteOrderById(Long id) {
-        orderDAO.deleteOrderById(id);
+        orderDAO.deleteOrder(id);
     }
 }
