@@ -24,7 +24,6 @@
         <p>
             <label for="email" class="sr-only">Email</label>
             <input type="text" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
-            <form:errors path = "*" cssClass = "error" />
         </p>
         <p>
             <label for="firstName" class="sr-only">First name</label>
@@ -38,6 +37,17 @@
             <label for="password" class="sr-only">Password</label>
             <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
         </p>
+
+        <div>
+            <c:if test="${userExists}">
+                <span>User already exists!</span>
+            </c:if>
+
+            <c:if test="${isError}">
+                <span>Invalid data</span>
+            </c:if>
+        </div>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
     </form>
 </div>

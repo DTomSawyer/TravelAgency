@@ -30,17 +30,15 @@ public class RegistrationController {
 
     @PostMapping("/register")
     public String addUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
+        user.setStatus(Status.ACTIVE);
 
-        if (bindingResult.hasErrors()) {
+        if (!userService.addUser(user)) {
+            model.addAttribute("userExists", true);
             return "register";
         }
-        /*if (!user.getPassword().equals(user.getPasswordConfirm())){
-            model.addAttribute("passwordError", "Passwords don't match");
-            return "registration";
-        }*/
-        user.setStatus(Status.ACTIVE);
-        if (!userService.addUser(user)) {
-            //model.addAttribute("usernameError", "User already exists!");
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("isError", true);
             return "register";
         }
 
