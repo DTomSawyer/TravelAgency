@@ -7,13 +7,14 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 @AllArgsConstructor
 public class HotelServiceImpl implements HotelService {
 
-    private HotelDAO hotelDAO;
+    private final HotelDAO hotelDAO;
 
     @Override
     public void addHotel(Hotel hotel) {
@@ -21,7 +22,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public Hotel getHotelById(Long id) {
+    public Optional<Hotel> getHotelById(Long id) {
         return hotelDAO.getHotelById(id);
     }
 
@@ -42,7 +43,7 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public void deleteHotelById(Long id) {
-        hotelDAO.deleteHotelById(id);
+        hotelDAO.deleteHotel(id);
     }
 
     @Override

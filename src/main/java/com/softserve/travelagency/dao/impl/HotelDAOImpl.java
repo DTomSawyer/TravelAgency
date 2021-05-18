@@ -10,12 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
 
-import java.util.HashSet;
-
-import java.time.LocalDate;
-
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Repository
 @AllArgsConstructor
@@ -35,14 +30,18 @@ public class HotelDAOImpl implements HotelDAO {
     }
 
     @Override
-    public Hotel getHotelById(Long id) {
+    public Optional<Hotel> getHotelById(Long id) {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
 
-        Hotel hotel = session.find(Hotel.class, id);
-
-        transaction.commit();
-        return hotel;
+        try {
+            Hotel hotel = session.find(Hotel.class, id);
+            return Optional.of(hotel);
+        } catch (NullPointerException npe) {
+            return Optional.empty();
+        } finally {
+            transaction.commit();
+        }
     }
 
     @Override
@@ -50,12 +49,16 @@ public class HotelDAOImpl implements HotelDAO {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
 
-        Query query = session.createQuery("FROM Hotel H WHERE H.country = :country", Hotel.class);
-        query.setParameter("country", country);
-        List<Hotel> hotel = query.getResultList();
-
-        transaction.commit();
-        return hotel;
+        try {
+            @SuppressWarnings("unchecked")
+            Query query = session.createQuery("FROM Hotel H WHERE H.country = :country", Hotel.class);
+            query.setParameter("country", country);
+            return (List<Hotel>) query.getResultList();
+        } catch (NullPointerException npe) {
+            return new ArrayList<>();
+        } finally {
+            session.getTransaction().commit();
+        }
     }
 
     @Override
@@ -63,12 +66,16 @@ public class HotelDAOImpl implements HotelDAO {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
 
-        Query query = session.createQuery("FROM Hotel H WHERE H.city = :city", Hotel.class);
-        query.setParameter("city", city);
-        List<Hotel> hotel = query.getResultList();
-
-        transaction.commit();
-        return hotel;
+        try {
+            @SuppressWarnings("unchecked")
+            Query query = session.createQuery("FROM Hotel H WHERE H.city = :city", Hotel.class);
+            query.setParameter("city", city);
+            return (List<Hotel>) query.getResultList();
+        } catch (NullPointerException npe) {
+            return new ArrayList<>();
+        } finally {
+            session.getTransaction().commit();
+        }
     }
 
     @Override
@@ -76,15 +83,19 @@ public class HotelDAOImpl implements HotelDAO {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
 
-        Query query = session.createQuery("FROM Hotel", Hotel.class);
-        List<Hotel> hotel = query.getResultList();
-
-        transaction.commit();
-        return hotel;
+        try {
+            @SuppressWarnings("unchecked")
+            Query query = session.createQuery("FROM Hotel", Hotel.class);
+            return (List<Hotel>) query.getResultList();
+        } catch (NullPointerException npe) {
+            return new ArrayList<>();
+        } finally {
+            session.getTransaction().commit();
+        }
     }
 
     @Override
-    public void deleteHotelById(Long id) {
+    public void deleteHotel(Long id) {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
 
@@ -99,11 +110,14 @@ public class HotelDAOImpl implements HotelDAO {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
 
-        Query query = session.createNativeQuery("select country from hotels");
-        Set<String> allSet = new HashSet<>();
-        allSet.addAll(query.getResultList());
-
-        transaction.commit();
-        return allSet;
+        try {
+            @SuppressWarnings("unchecked")
+            Query query = session.createNativeQuery("SELECT country FROM hotels");
+            return new HashSet<>(query.getResultList());
+        } catch (NullPointerException npe) {
+            return new HashSet<>();
+        } finally {
+            session.getTransaction().commit();
+        }
     }
 }
