@@ -46,12 +46,12 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            mappedBy = "user",fetch = FetchType.EAGER) //remove EAGER
+    @OneToMany(//cascade = CascadeType.ALL,
+            mappedBy = "user",
+            fetch = FetchType.EAGER) //remove EAGER
     private List<Order> orders;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private Status status;
-
 }

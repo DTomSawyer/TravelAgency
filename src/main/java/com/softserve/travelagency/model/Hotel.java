@@ -36,12 +36,13 @@ public class Hotel {
     @Column(name = "city")
     private String city;
 
-    @NotNull
-    @OneToMany(cascade = CascadeType.ALL,
+    @OneToMany(//cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
             mappedBy = "hotel")
     private List<Room> rooms;
 
-    @OneToMany(cascade = CascadeType.ALL,
+    @OneToMany(//cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
             mappedBy = "hotel")
     private List<Order> orders;
 }
