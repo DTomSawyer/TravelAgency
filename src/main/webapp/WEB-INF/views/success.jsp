@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div class="container">
     <h1>Success Login</h1>
     <form action="/auth/logout" method="POST">
@@ -6,7 +7,10 @@
     <form action="/home/booking" method="GET">
         <button type="submit">Booking </button>
     </form>
-    <form action="/management/manage" method="GET">
+
+    <sec:authorize access="hasPermission(#user,'DEVELOPERS_BOOK')">
+        <form action="/management/manage" method="GET">
         <button type="submit">Management </button>
     </form>
+    </sec:authorize>
 </div>
