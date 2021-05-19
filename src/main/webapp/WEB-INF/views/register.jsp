@@ -19,27 +19,31 @@
 </head>
 <body>
 <div class="container">
-    <form class="form-signin" method="post" action="/registration/register">
+    <form:form class="form-signin" method="post" action="/registration/register" modelAttribute="user" >
         <h2 class="form-signin-heading">Please sign in</h2>
         <p>
-            <label for="email" class="sr-only">Email</label>
-            <input type="text" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
-            <form:errors path = "*" cssClass = "error" />
+            <label for="email" class="sr-only">Email
+            <form:input type="text" path="email" id="Email" placeholder="Email" />
+            <form:errors path="email"/>
+            </label>
         </p>
         <p>
             <label for="firstName" class="sr-only">First name</label>
-            <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First name" required>
+            <form:input type="text" id="firstName" path="firstName" class="form-control" placeholder="First name" />
+            <form:errors path="firstName"/>
         </p>
         <p>
             <label for="lastName" class="sr-only">Last name</label>
-            <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last name" required>
+            <form:input type="text" id="lastName" path="lastName" class="form-control" placeholder="Last name" />
+            <form:errors path="lastName"/>
         </p>
         <p>
             <label for="password" class="sr-only">Password</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+            <form:input type="password" id="password" path="password" class="form-control" placeholder="Password" />
+            <form:errors path="password"/>
         </p>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-    </form>
+    </form:form>
 </div>
 </body>
 </html>
