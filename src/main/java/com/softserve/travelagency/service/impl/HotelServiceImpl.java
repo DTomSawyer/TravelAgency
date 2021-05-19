@@ -5,11 +5,13 @@ import com.softserve.travelagency.model.Hotel;
 import com.softserve.travelagency.service.HotelService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
 
 @Service
+@Transactional
 @AllArgsConstructor
 public class HotelServiceImpl implements HotelService {
 

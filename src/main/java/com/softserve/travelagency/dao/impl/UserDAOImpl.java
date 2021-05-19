@@ -28,10 +28,8 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<User> getAllUsers() {
         Session session = sessionFactory.getCurrentSession();
-        Transaction transaction = session.beginTransaction();
         List<User> allUsers = session.createQuery("from User", User.class)
                 .getResultList();
-        transaction.commit();
         return allUsers;
     }
 
@@ -39,39 +37,31 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void saveUser(User user) {
         Session session = sessionFactory.getCurrentSession();
-        Transaction transaction = session.beginTransaction();
         session.save(user);
-        transaction.commit();
     }
 
     @Override
     public User getUserById(Long id) {
         Session session = sessionFactory.getCurrentSession();
-        Transaction transaction = session.beginTransaction();
         User user = session.get(User.class, id);
-        transaction.commit();
         return user;
     }
 
     @Override
     public void delete(Long id) {
         Session session = sessionFactory.getCurrentSession();
-        Transaction transaction = session.beginTransaction();
         Query<User> query = session.createQuery("delete from User " +
                 "where id =:userId");
         query.setParameter("userId", id);
         query.executeUpdate();
-        transaction.commit();
     }
 
     @Override
     public User findByEmail(String email) {
         Session session = sessionFactory.getCurrentSession();
-        Transaction transaction = session.beginTransaction();
         Query query = session.createQuery("FROM User O WHERE O.email = :email", User.class);
         query.setParameter("email", email);
         User user = (User) query.uniqueResult();
-        transaction.commit();
         return user;
 
     }
