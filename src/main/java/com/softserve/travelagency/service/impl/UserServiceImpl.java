@@ -5,17 +5,19 @@ import com.softserve.travelagency.model.User;
 import com.softserve.travelagency.model.util.Role;
 import com.softserve.travelagency.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 @AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
+
 
     @Override
     public List<User> getAllUsers() {

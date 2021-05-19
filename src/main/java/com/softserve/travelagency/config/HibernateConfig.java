@@ -44,11 +44,36 @@ public class HibernateConfig {
     public PlatformTransactionManager transactionManager() {
         HibernateTransactionManager transactionManager
                 = new HibernateTransactionManager();
-
         transactionManager.setSessionFactory(sessionFactory().getObject());
-
         return transactionManager;
     }
+
+//    @Bean
+//    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
+//        LocalContainerEntityManagerFactoryBean em
+//                = new LocalContainerEntityManagerFactoryBean();
+//        em.setDataSource(dataSource());
+//        em.setPackagesToScan(new String[] { "com.softserve.travelagency.model" });
+//
+//        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+//        em.setJpaVendorAdapter(vendorAdapter);
+//        em.setJpaProperties(hibernateProperties());
+//
+//        return em;
+//    }
+//    @Bean
+//    public PlatformTransactionManager transactionManager(){
+//        JpaTransactionManager transactionManager
+//                = new JpaTransactionManager();
+//        transactionManager.setEntityManagerFactory(
+//                entityManagerFactoryBean().getObject() );
+//        return transactionManager;
+//    }
+
+//    @Bean
+//    public PlatformTransactionManager txManager() {
+//        return new DataSourceTransactionManager(dataSource());
+//    }
 
     private Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();
