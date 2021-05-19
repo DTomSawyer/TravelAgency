@@ -47,7 +47,7 @@ public class User {
     private Role role;
 
     @OneToMany(cascade = CascadeType.ALL,
-            mappedBy = "user",fetch = FetchType.EAGER) //remove EAGER
+            mappedBy = "user") //fetch type  EAGER ???
     private List<Order> orders;
 
     @Column(name = "status")
