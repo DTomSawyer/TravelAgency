@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<form:form  action="available" method="get">
+<form:form action="available" method="get">
     <table>
         </label for="country">Pick Country:</label>
 
@@ -13,22 +13,18 @@
                 <option value="${country}">"${country}"</option>
             </c:forEach>
         </select>
-            <%--        <form>--%>
-        <div class="form-group">
-                <%--@declare id="inputdate"--%><label for="inputDate">Arrival Date:
-        </label>
-            <input type="date" class="form-control" name="arrivalDate" required>
+        <div>
+            <label for="arrival">Arrival Date:</label>
+            <input id="arrival" type="date" name="arrivalDate" required>
         </div>
-            <%--        </form>--%>
-            <%--        <form>--%>
-        <div class="form-group">
-                <%--@declare id="inputdate"--%><label for="inputDate">Departure Date:
-        </label>
-            <input type="date" class="form-control" name="departureDate" required>
+
+        <div>
+            <label for="departure">Departure Date:</label>
+            <input id="departure" type="date" name="departureDate" required>
         </div>
-            <%--        </form>--%>
+
         </tr>
-        <td><input type="submit" value="Submit" /></td>
+        <td><input type="submit" value="Submit"/></td>
         </tr>
     </table>
 </form:form>

@@ -19,10 +19,9 @@ public class RoomServiceImpl implements RoomService {
     private RoomDAO roomDAO;
 
 
-
     @Override
-    public List<Room> getAllRooms(){
-       return roomDAO.getAllRooms();
+    public List<Room> getAllRooms() {
+        return roomDAO.getAllRooms();
     }
 
     @Override
@@ -32,7 +31,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public void addRoom(Room room) {
-    roomDAO.saveRoom(room);
+        roomDAO.saveRoom(room);
     }
 
     @Override

@@ -48,7 +48,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public Set<String> getAllCountries(){
-       return hotelDAO.getAllCountries();
+    public Set<String> getAllCountries() {
+        return hotelDAO.getAllCountries();
     }
 }
