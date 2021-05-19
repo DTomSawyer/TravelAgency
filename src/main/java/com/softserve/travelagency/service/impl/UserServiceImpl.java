@@ -18,6 +18,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
 
+
     @Override
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();

@@ -18,6 +18,8 @@ public class RoomServiceImpl implements RoomService {
 
     private RoomDAO roomDAO;
 
+
+
     @Override
     public List<Room> getAllRooms(){
        return roomDAO.getAllRooms();

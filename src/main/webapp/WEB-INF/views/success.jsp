@@ -9,7 +9,7 @@
         <button type="submit">Booking </button>
     </form>
 
-    <sec:authorize access="hasPermission(#principal,'DEVELOPERS_EDIT')">
+    <sec:authorize access="hasAuthority('developers:edit')">
 <%--        DEVELOPERS_EDIT("developers:edit");--%>
         <form action="/management/manage" method="GET">
         <button type="submit">Management </button>

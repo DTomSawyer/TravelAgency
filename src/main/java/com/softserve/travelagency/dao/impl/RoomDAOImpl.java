@@ -24,31 +24,39 @@ public class RoomDAOImpl implements RoomDAO {
     @Override
     public List<Room> getAllRooms() {
         Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
         List<Room> allRooms = session.createQuery("from Room", Room.class)
                 .getResultList();
+        transaction.commit();
         return allRooms;
     }
 
     @Override
     public void saveRoom(Room room) {
         Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
         session.save(room);
+        transaction.commit();
     }
 
     @Override
     public Room getRoomById(Long id) {
         Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
         Room room = session.get(Room.class, id);
+        transaction.commit();
         return room;
     }
 
     @Override
     public void delete(Long id) {
         Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
         Query<Room> query = session.createQuery("delete from Room " +
                 "where id =:roomId");
         query.setParameter("roomId", id);
         query.executeUpdate();
+        transaction.commit();
     }
 
     @Override
@@ -56,6 +64,8 @@ public class RoomDAOImpl implements RoomDAO {
                                         LocalDate departureDate) {
 
         Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
         javax.persistence.Query query =
                 session.createQuery("FROM Room R " +
                 "WHERE R.hotel.country = :country " +
@@ -69,6 +79,8 @@ public class RoomDAOImpl implements RoomDAO {
         query.setParameter("arrivalDate", arrivalDate);
         query.setParameter("departureDate", departureDate);
         List<Room> availableRooms = query.getResultList();
+
+        transaction.commit();
         return availableRooms;
     }
 }
