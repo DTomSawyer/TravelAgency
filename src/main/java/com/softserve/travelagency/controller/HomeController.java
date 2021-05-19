@@ -34,7 +34,6 @@ public class HomeController {
     private HotelService hotelService;
 
 
-
     @GetMapping("/booking")
     @PreAuthorize("hasAuthority('developers:book')")
     public String countries(Model model) {

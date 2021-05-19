@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     public boolean saveUser(User user) {
         User userDB = userDAO.findByEmail(user.getEmail());
 
-        if(userDB != null) {
+        if (userDB != null) {
             return false;
         }
 

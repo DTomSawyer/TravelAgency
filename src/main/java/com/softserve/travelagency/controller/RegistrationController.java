@@ -35,13 +35,9 @@ public class RegistrationController {
         if (bindingResult.hasErrors()) {
             return "register";
         }
-        /*if (!user.getPassword().equals(user.getPasswordConfirm())){
-            model.addAttribute("passwordError", "Passwords don't match");
-            return "registration";
-        }*/
+
         user.setStatus(Status.ACTIVE);
         if (!userService.saveUser(user)) {
-            //model.addAttribute("usernameError", "User already exists!");
             return "register";
         }
 

@@ -63,10 +63,11 @@ public class ManagementController {
         return "all-users";
     }
 
-    @GetMapping("/getOrders")
+    @GetMapping("/getOrders/{user.id}")
     @PreAuthorize("hasAuthority('developers:edit')")
-    public String getOrders(@RequestParam("userId") Long userId, Model model) {
+    public String getOrders(@PathVariable("user.id") Long userId, Model model) {
         model.addAttribute("user", userService.getUserById(userId));
+        model.addAttribute("orders", orderService.getOrdersByUserId(userId));
         return "orders-list";
     }
 }

@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Users</title>
@@ -23,16 +24,13 @@
     <tbody>
     <c:forEach var="user" items="${users}">
 
-        <c:url var="ordersLink" value="/getOrders">
-            <c:param name="userId" value="${user.id}"/>
-        </c:url>
 
         <sf:form method="get" action="${ordersLink}">
             <tr>
                 <td>${user.id}</td>
                 <td>${user.email}</td>
                 <td>
-                    <button type="submit">See orders</button>
+                    <a href = "<c:url value ="/management/getOrders/${user.id}"/>">See Order</a>
                 </td>
             </tr>
         </sf:form>

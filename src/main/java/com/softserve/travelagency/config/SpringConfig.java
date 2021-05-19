@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableTransactionManagement
 @ComponentScan("com.softserve.travelagency") // only .controller ?
 @EnableWebMvc
-public class SpringConfig implements WebMvcConfigurer{
+public class SpringConfig implements WebMvcConfigurer {
 
 //    private final ApplicationContext applicationContext ;
 //    @Autowired
