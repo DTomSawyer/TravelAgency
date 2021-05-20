@@ -21,7 +21,7 @@
         <label for="name">Name</label>
             <form:input type="text" path="name" id="Name" placeholder="Name"/>
             <form:errors path="name"/>
-    <p>${message}</p>
+    <span>${message}</span>
     </p>
 
     </label for="country">Country</label>
@@ -31,12 +31,6 @@
         </c:forEach>
     </select>
 
-
-    <p>
-        <label for="city">City</label>
-
-        <input type="text" id="city" name="city" class="form-control" placeholder="City" required>
-    </p>
     <button type="submit">Add a hotel</button>
 </form:form>
 

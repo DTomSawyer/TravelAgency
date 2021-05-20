@@ -47,14 +47,34 @@ public class ManagementController {
     public String addHotel(@ModelAttribute("hotel") @Valid Hotel hotel, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            return "redirect:/management/addHotel";
+            model.addAttribute("hotel", new Hotel());
+            model.addAttribute("countries", hotelService.getAllCountries());
+            return "new-hotel";
         }
 
         if (hotelService.addHotel(hotel)) {
             return "redirect:/management/manage";
+        } else {
+            String message = "Hotel already exists!";
+            model.addAttribute("message", message);
+            return "new-hotel";
+        }
+    }
+
+    /*@PostMapping("/addHotel")
+    @PreAuthorize("hasAuthority('developers:edit')")
+    public String addHotel(@ModelAttribute("hotel") @Valid Hotel hotel, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            return "redirect:/management/addHotel";
+        }
+
+        if (hotelService.addHotel(hotel)) {
+            model.addAttribute("message", "Hotel already exists!");
+            return "redirect:/management/manage";
         }
         return "redirect:/management/addHotel";
-    }
+    }*/
 
     @GetMapping("/addRoom")
     @PreAuthorize("hasAuthority('developers:edit')")
@@ -65,7 +85,7 @@ public class ManagementController {
         return "new-room";
     }
 
-/*    @PostMapping("/addRoom")
+    @PostMapping("/addRoom")
     @PreAuthorize("hasAuthority('developers:edit')")
     public String addRoom(@RequestParam String hotelName,
                           @RequestParam String type,
@@ -89,9 +109,9 @@ public class ManagementController {
             return "redirect:/management/manage";
         }
         return "redirect:/management/addRoom";
-    }*/
+    }
 
-    @PostMapping("/addRoom")
+    /*@PostMapping("/addRoom")
     @PreAuthorize("hasAuthority('developers:edit')")
     public String addRoom(@ModelAttribute("room") @Valid Room room, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
@@ -102,7 +122,7 @@ public class ManagementController {
             return "redirect:/management/manage";
         }
         return "redirect:/management/addRoom";
-    }
+    }*/
 
     @GetMapping("/getUsers")
     @PreAuthorize("hasAuthority('developers:edit')")
