@@ -10,9 +10,9 @@ public interface UserService {
 
     boolean addUser(User user);
 
-    Optional<User> getUserById(Long id);
+    User getUserById(Long id);
 
-    Optional<User> getUserByEmail(String email);
+    User getUserByEmail(String email);
 
     List<User> getAllUsers();
 

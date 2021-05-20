@@ -64,13 +64,13 @@ public class HomeController {
                            Model model,
                            Principal principal) {
 
-        Optional<Room> room = roomService.getRoomById(roomId);
+        Room room = roomService.getRoomById(roomId);
 
-        Optional<User> user = userService.getUserByEmail(principal.getName());
+        User user = userService.getUserByEmail(principal.getName());
         Order order = Order.builder()
-                .user(user.get())
-                .hotel(room.get().getHotel())
-                .room(room.get())
+                .user(user)
+                .hotel(room.getHotel())
+                .room(room)
                 .arrivalDate(arrivalDate)
                 .departureDate(departureDate)
                 .orderDate(LocalDateTime.now())

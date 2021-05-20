@@ -21,14 +21,12 @@
 
     <tbody>
     <c:forEach var="user" items="${users}">
-
-
         <sf:form method="get" action="${ordersLink}">
             <tr>
                 <td>${user.id}</td>
                 <td>${user.email}</td>
                 <td>
-                    <a href = "<c:url value ="/management/getOrders/${user.id}"/>">See Order</a>
+                    <a href = "<c:url value ="/management/getOrders/${user.id}"/>">See Orders</a>
                 </td>
             </tr>
         </sf:form>

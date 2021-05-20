@@ -19,7 +19,7 @@
     </label for="country">Country</label>
     <select name="country">
         <c:forEach var="country" items="${countries}">
-            <option value="${country}">"${country}"</option>
+            <option value="${country}">${country}</option>
         </c:forEach>
     </select>
 

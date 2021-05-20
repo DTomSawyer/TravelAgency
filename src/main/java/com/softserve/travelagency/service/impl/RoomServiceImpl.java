@@ -36,8 +36,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Optional<Room> getRoomById(Long id) {
-        return roomDAO.getRoomById(id);
+    public Room getRoomById(Long id) {
+        return roomDAO.getRoomById(id).orElse(null);
     }
 
     @Override

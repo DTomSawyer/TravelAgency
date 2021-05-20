@@ -44,6 +44,24 @@ public class HotelDAOImpl implements HotelDAO {
     }
 
     @Override
+    public Optional<Hotel> getHotelByName(String name) {
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            Query query = session.createQuery("FROM Hotel H WHERE H.name = :name", Hotel.class);
+            query.setParameter("name", name);
+            return Optional.of((Hotel) query.getResultList().get(0));
+            //Hotel hotel = session.find(Hotel.class, name);
+            //return Optional.of(hotel);
+        } catch (NullPointerException npe) {
+            return Optional.empty();
+        } finally {
+            transaction.commit();
+        }
+    }
+
+    @Override
     public List<Hotel> getHotelsByCountry(String country) {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
@@ -60,7 +78,7 @@ public class HotelDAOImpl implements HotelDAO {
         }
     }
 
-    @Override
+/*    @Override
     public List<Hotel> getHotelsByCity(String city) {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
@@ -75,7 +93,7 @@ public class HotelDAOImpl implements HotelDAO {
         } finally {
             transaction.commit();
         }
-    }
+    }*/
 
     @Override
     public List<Hotel> getAllHotels() {
@@ -118,18 +136,5 @@ public class HotelDAOImpl implements HotelDAO {
         } finally {
             transaction.commit();
         }
-    }
-
-    @Override
-    public Hotel getHotelByName(String name) {
-        Session session = sessionFactory.getCurrentSession();
-        Transaction transaction = session.beginTransaction();
-
-        Query query = session.createQuery("FROM Hotel H WHERE H.name = :name", Hotel.class);
-        query.setParameter("name", name);
-        Hotel hotel = (Hotel) query.getSingleResult();
-
-        transaction.commit();
-        return hotel;
     }
 }

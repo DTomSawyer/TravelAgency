@@ -12,9 +12,11 @@ public interface HotelDAO {
 
     Optional<Hotel> getHotelById(Long id);
 
+    Optional<Hotel> getHotelByName(String name);
+
     List<Hotel> getHotelsByCountry(String country);
 
-    List<Hotel> getHotelsByCity(String city);
+    /*List<Hotel> getHotelsByCity(String city);*/
 
     List<Hotel> getAllHotels();
 
@@ -22,5 +24,5 @@ public interface HotelDAO {
 
     Set<String> getAllCountries();
 
-    Hotel getHotelByName(String hotel);
+
 }

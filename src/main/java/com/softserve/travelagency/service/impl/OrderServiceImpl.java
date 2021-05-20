@@ -23,8 +23,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Optional<Order> getOrderById(Long id) {
-        return orderDAO.getOrderById(id);
+    public Order getOrderById(Long id) {
+        return orderDAO.getOrderById(id).orElse(null);
     }
 
     @Override

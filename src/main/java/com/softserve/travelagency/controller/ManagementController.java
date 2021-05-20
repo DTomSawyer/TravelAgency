@@ -44,16 +44,14 @@ public class ManagementController {
     @PreAuthorize("hasAuthority('developers:edit')")
     public String addHotel(@ModelAttribute("hotel") @Valid Hotel hotel, BindingResult bindingResult, Model model) {
 
-        if (bindingResult.hasErrors()) {
-            return "new-hotel";
-        }
+        /*if (bindingResult.hasErrors()) {
+            return "redirect:/management/addHotel";
+        }*/
 
         if (hotelService.addHotel(hotel)) {
             return "redirect:/management/manage";
-        } else {
-            return "redirect:/management/addHotels";
-
         }
+        return "redirect:/management/addHotel";
     }
 
     @GetMapping("/addRoom")
@@ -77,9 +75,9 @@ public class ManagementController {
         return "all-users";
     }
 
-    @GetMapping("/getOrders/{user.id}")
+    @GetMapping("/getOrders/{userId}")
     @PreAuthorize("hasAuthority('developers:edit')")
-    public String getOrders(@PathVariable("user.id") Long userId, Model model) {
+    public String getOrders(@PathVariable("userId") Long userId, Model model) {
         model.addAttribute("user", userService.getUserById(userId));
         model.addAttribute("orders", orderService.getOrdersByUserId(userId));
         return "orders-list";

@@ -21,7 +21,7 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public boolean addHotel(Hotel hotel) {
-        if (Objects.nonNull(hotelDAO.getHotelByName(hotel.getName()))) {
+        if (Objects.nonNull(getHotelByName(hotel.getName()))) {
             return false;
         }
         hotelDAO.saveHotel(hotel);
@@ -29,8 +29,13 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public Optional<Hotel> getHotelById(Long id) {
-        return hotelDAO.getHotelById(id);
+    public Hotel getHotelById(Long id) {
+        return hotelDAO.getHotelById(id).orElse(null);
+    }
+
+    @Override
+    public Hotel getHotelByName(String name) {
+        return hotelDAO.getHotelByName(name).orElse(null);
     }
 
     @Override
@@ -38,10 +43,10 @@ public class HotelServiceImpl implements HotelService {
         return hotelDAO.getHotelsByCountry(country);
     }
 
-    @Override
+    /*@Override
     public List<Hotel> getHotelsByCity(String city) {
         return hotelDAO.getHotelsByCity(city);
-    }
+    }*/
 
     @Override
     public List<Hotel> getAllHotels() {

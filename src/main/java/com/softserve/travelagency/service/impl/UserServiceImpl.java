@@ -18,7 +18,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private UserDAO userDAO;
+    private final UserDAO userDAO;
 
     @Override
     public List<User> getAllUsers() {
@@ -41,8 +41,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getUserById(Long id) {
-        return userDAO.getUserById(id);
+    public User getUserById(Long id) {
+        return userDAO.getUserById(id).orElse(null);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return userDAO.getUserByEmail(email).orElse(null);
     }
 
     @Override
@@ -50,8 +55,4 @@ public class UserServiceImpl implements UserService {
         userDAO.deleteUser(id);
     }
 
-    @Override
-    public Optional<User> getUserByEmail(String email) {
-        return userDAO.getUserByEmail(email);
-    }
 }

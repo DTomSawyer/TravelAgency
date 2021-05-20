@@ -4,13 +4,12 @@ import com.softserve.travelagency.model.Room;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 public interface RoomService {
 
     void addRoom(Room room);
 
-    Optional<Room> getRoomById(Long id);
+    Room getRoomById(Long id);
 
     List<Room> getAllRooms();
 
