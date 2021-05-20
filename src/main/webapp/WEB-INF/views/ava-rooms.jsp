@@ -18,18 +18,20 @@
     <a>and</a>
     <input name="arrivalDate" value="${departureDate}" readonly/>
     <br/>
+
     <a href="/home/booking">Change Dates</a>
 
     <tr>
         <th>Id</th>
         <th>Hotel</th>
-        <th>City</th>
+        <%--<th>City</th>--%>
         <th>Type</th>
         <th>Price</th>
         <th>Number</th>
         <th>Action</th>
     </tr>
     </thead>
+
     <tbody>
     <c:forEach var="room" items="${available}">
 
@@ -43,7 +45,7 @@
             <tr>
                 <td>${room.id}</td>
                 <td>${room.hotel.name}</td>
-                <td>${room.hotel.city}</td>
+                <%--<td>${room.hotel.city}</td>--%>
                 <td>${room.type}</td>
                 <td>${room.price}</td>
                 <td>${room.number}</td>
@@ -52,7 +54,6 @@
                 </td>
             </tr>
         </sf:form>
-
     </c:forEach>
     </tbody>
 </table>

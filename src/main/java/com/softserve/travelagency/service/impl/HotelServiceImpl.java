@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -20,15 +21,16 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public boolean addHotel(Hotel hotel) {
+
         if (hotelDAO.getHotelByName(hotel.getName())) {
             return false;
         }
         hotelDAO.saveHotel(hotel);
         return  true;
-    }
+
 
     @Override
-    public Hotel getHotelById(Long id) {
+    public Optional<Hotel> getHotelById(Long id) {
         return hotelDAO.getHotelById(id);
     }
 
@@ -49,7 +51,7 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public void deleteHotelById(Long id) {
-        hotelDAO.deleteHotelById(id);
+        hotelDAO.deleteHotel(id);
     }
 
     @Override

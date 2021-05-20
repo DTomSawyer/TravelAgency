@@ -11,13 +11,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
-@AllArgsConstructor
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
-    private UserDAO userDAO;
 
+    private UserDAO userDAO;
 
     @Override
     public List<User> getAllUsers() {
@@ -25,10 +26,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean saveUser(User user) {
-        User userDB = userDAO.findByEmail(user.getEmail());
+    public boolean addUser(User user) {
+        Optional<User> userDB = userDAO.getUserByEmail(user.getEmail());
 
-        if (userDB != null) {
+        if (userDB.isPresent()) {
             return false;
         }
 
@@ -40,18 +41,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(Long id) {
+    public Optional<User> getUserById(Long id) {
         return userDAO.getUserById(id);
     }
 
     @Override
     public void deleteUser(Long id) {
-        userDAO.delete(id);
+        userDAO.deleteUser(id);
     }
 
     @Override
-    public User findByEmail(String email) {
-        return userDAO.findByEmail(email);
+    public Optional<User> getUserByEmail(String email) {
+        return userDAO.getUserByEmail(email);
     }
-
 }

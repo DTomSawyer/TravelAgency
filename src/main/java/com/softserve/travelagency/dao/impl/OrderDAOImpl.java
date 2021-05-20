@@ -1,6 +1,7 @@
 package com.softserve.travelagency.dao.impl;
 
 import com.softserve.travelagency.dao.OrderDAO;
+import com.softserve.travelagency.model.Hotel;
 import com.softserve.travelagency.model.Order;
 import lombok.AllArgsConstructor;
 import org.hibernate.Session;
@@ -9,7 +10,9 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
@@ -29,14 +32,18 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public Order getOrderById(Long id) {
+    public Optional<Order> getOrderById(Long id) {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
 
-        Order order = session.find(Order.class, id);
-
-        transaction.commit();
-        return order;
+        try {
+            Order order = session.find(Order.class, id);
+            return Optional.of(order);
+        } catch (NullPointerException npe) {
+            return Optional.empty();
+        } finally {
+            transaction.commit();
+        }
     }
 
     @Override
@@ -44,12 +51,16 @@ public class OrderDAOImpl implements OrderDAO {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
 
-        Query query = session.createQuery("FROM Order O WHERE O.user.id = :userId", Order.class);
-        query.setParameter("userId", userId);
-        List<Order> order = query.getResultList();
-
-        transaction.commit();
-        return order;
+        try {
+            @SuppressWarnings("unchecked")
+            Query query = session.createQuery("FROM Order O WHERE O.user.id = :userId", Order.class);
+            query.setParameter("userId", userId);
+            return (List<Order>) query.getResultList();
+        } catch (NullPointerException npe) {
+            return new ArrayList<>();
+        } finally {
+            transaction.commit();
+        }
     }
 
     @Override
@@ -57,16 +68,20 @@ public class OrderDAOImpl implements OrderDAO {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
 
-        Query query = session.createQuery("FROM Order O WHERE O.hotel.id = :hotelId", Order.class);
-        query.setParameter("hotelId", hotelId);
-        List<Order> order = query.getResultList();
-
-        transaction.commit();
-        return order;
+        try {
+            @SuppressWarnings("unchecked")
+            Query query = session.createQuery("FROM Order O WHERE O.hotel.id = :hotelId", Order.class);
+            query.setParameter("hotelId", hotelId);
+            return (List<Order>) query.getResultList();
+        } catch (NullPointerException npe) {
+            return new ArrayList<>();
+        } finally {
+            transaction.commit();
+        }
     }
 
     @Override
-    public void deleteOrderById(Long id) {
+    public void deleteOrder(Long id) {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
 

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/home")
@@ -63,14 +64,13 @@ public class HomeController {
                            Model model,
                            Principal principal) {
 
-        Room room = roomService.getRoomById(roomId);
+        Optional<Room> room = roomService.getRoomById(roomId);
 
-
-        User user = userService.findByEmail(principal.getName());
+        Optional<User> user = userService.getUserByEmail(principal.getName());
         Order order = Order.builder()
-                .user(user)
-                .hotel(room.getHotel())
-                .room(room)
+                .user(user.get())
+                .hotel(room.get().getHotel())
+                .room(room.get())
                 .arrivalDate(arrivalDate)
                 .departureDate(departureDate)
                 .orderDate(LocalDateTime.now())

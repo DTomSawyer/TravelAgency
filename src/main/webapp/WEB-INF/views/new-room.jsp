@@ -1,45 +1,41 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: kwint
-  Date: 15.05.2021
-  Time: 18:34
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style><%@include file="/WEB-INF/resources/css/new-hotel.css"%></style>
 <html>
+
 <head>
     <title>Add a room</title>
 </head>
+
 <body>
+<form:form method="post" action="management/addRoom" modelAttribute="room">
+    <table>
+        <label for="hotel">Hotel</label>
+        <select id="hotel" name="hotel">
+            <c:forEach var="hotel" items="${hotels}">
+                <option value="${hotel}">${hotel.name}</option>
+            </c:forEach>
+        </select>
 
-<form method="post" action="/management/addRoom" modelAttribute="room">
+        <div class="form-group">
+            <label for="type" class="sr-only">Type</label>
+            <input type="text" id="type" name="type" class="form-control" placeholder="Type" required>
+        </div>
 
-    </label for="hotel">Hotel</label>
-    <select name="hotel">
-        <c:forEach var="hotel" items="${hotels}"> <%--????????--%>
-            <option value="${hotel.name}">"${hotel.name}"</option>
-        </c:forEach>
-    </select>
+        <div class="form-group">
+            <label for="number" class="sr-only">Number</label>
+            <input type="text" id="number" name="number" class="form-control" placeholder="Number" required>
+        </div>
 
-    <p>
-        <label for="type" class="sr-only">Type</label>
-        <input type="text" id="type" name="type" class="form-control" placeholder="Type" required>
-    </p>
+        <div class="form-group">
+            <label for="price" class="sr-only">Price</label>
+            <input type="text" id="price" name="price" class="form-control" placeholder="Price" required>
+        </div>
 
-    <p>
-        <label for="number" class="sr-only">Number</label>
-        <input type="text" id="number" name="number" class="form-control" placeholder="Number" required>
-    </p>
-
-    <p>
-        <label for="price" class="sr-only">Price</label>
-        <input type="text" id="price" name="price" class="form-control" placeholder="Price" required>
-    </p>
-
-    <button type="submit">Add a room</button>
-</form>
-
+        <tr>
+            <td><input type="submit" value="Add a room"/></td>
+        </tr>
+    </table>
+</form:form>
 </body>
 </html>

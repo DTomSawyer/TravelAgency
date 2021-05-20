@@ -31,8 +31,10 @@
         </c:forEach>
     </select>
 
+
     <p>
         <label for="city">City</label>
+
         <input type="text" id="city" name="city" class="form-control" placeholder="City" required>
     </p>
     <button type="submit">Add a hotel</button>

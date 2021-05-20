@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 
 @Service("userDetailsServiceImpl")
 @AllArgsConstructor
@@ -18,12 +19,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserDAO userDAO;
 
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userDAO.findByEmail(email);
-        if (user == null)
+        Optional<User> user = userDAO.getUserByEmail(email);
+        if (user.isEmpty())
             throw new UsernameNotFoundException("User not found");
-        return SecurityUser.fromUser(user);
+        return SecurityUser.fromUser(user.get());
     }
 }

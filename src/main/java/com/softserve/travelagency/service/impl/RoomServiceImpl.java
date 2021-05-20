@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -35,13 +36,13 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Room getRoomById(Long id) {
+    public Optional<Room> getRoomById(Long id) {
         return roomDAO.getRoomById(id);
     }
 
     @Override
     public void deleteRoom(Long id) {
-        roomDAO.delete(id);
+        roomDAO.deleteRoom(id);
     }
 
 }

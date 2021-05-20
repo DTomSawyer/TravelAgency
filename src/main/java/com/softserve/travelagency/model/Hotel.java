@@ -22,12 +22,12 @@ public class Hotel {
     private Long id;
 
     @NotNull
-    @Pattern(regexp = "[A-Z][a-z]+(-[A-Z][a-z]+)?")
+    @Pattern(regexp = "[a-zA-Z0-9 ]")
     @Column(name = "name")
     private String name;
 
     @NotNull
-    @Pattern(regexp = "[A-Z][a-z]+(-[A-Z][a-z]+)?")
+    @Pattern(regexp = "[a-zA-Z0-9 ]")
     @Column(name = "country")
     private String country;
 
@@ -35,7 +35,6 @@ public class Hotel {
     @Pattern(regexp = "[A-Z][a-z]+(-[A-Z][a-z]+)?")
     @Column(name = "city")
     private String city;
-
 
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "hotel")
