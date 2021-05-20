@@ -65,6 +65,32 @@ public class ManagementController {
         return "new-room";
     }
 
+/*    @PostMapping("/addRoom")
+    @PreAuthorize("hasAuthority('developers:edit')")
+    public String addRoom(@RequestParam String hotelName,
+                          @RequestParam String type,
+                          @RequestParam Integer number,
+                          @RequestParam Double price,
+                          BindingResult bindingResult, Model model) {
+
+        Hotel hotel = hotelService.getHotelByName(hotelName);
+        Room room = Room.builder()
+                .hotel(hotel)
+                .type(RoomType.valueOf(type))
+                .number(number)
+                .price(price)
+                .build();
+
+        if (bindingResult.hasErrors()) {
+            return "redirect:/management/addRoom";
+        }
+
+        if (roomService.addRoom(room)) {
+            return "redirect:/management/manage";
+        }
+        return "redirect:/management/addRoom";
+    }*/
+
     @PostMapping("/addRoom")
     @PreAuthorize("hasAuthority('developers:edit')")
     public String addRoom(@ModelAttribute("room") @Valid Room room, BindingResult bindingResult, Model model) {
