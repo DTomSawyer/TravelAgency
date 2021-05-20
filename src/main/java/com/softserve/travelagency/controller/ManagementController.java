@@ -2,7 +2,6 @@ package com.softserve.travelagency.controller;
 
 import com.softserve.travelagency.model.Hotel;
 import com.softserve.travelagency.model.Room;
-import com.softserve.travelagency.model.User;
 import com.softserve.travelagency.model.util.RoomType;
 import com.softserve.travelagency.service.HotelService;
 import com.softserve.travelagency.service.OrderService;
@@ -15,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.lang.model.util.Types;
 import javax.validation.Valid;
 
 @Controller
@@ -41,25 +39,6 @@ public class ManagementController {
         model.addAttribute("countries", hotelService.getAllCountries());
         return "new-hotel";
     }
-
-    /*@PostMapping("/addHotel")
-    @PreAuthorize("hasAuthority('developers:edit')")
-    public String addHotel(@ModelAttribute("hotel") @Valid Hotel hotel, BindingResult bindingResult, Model model) {
-
-        if (bindingResult.hasErrors()) {
-            return "redirect:/management/addHotel";
-        }
-
-        if (hotelService.addHotel(hotel)) {
-            return "redirect:/management/manage";
-        } else {
-            String message = "Hotel already exists!";
-            model.addAttribute("message", message);
-            model.addAttribute("hotel", new Hotel());
-            model.addAttribute("countries", hotelService.getAllCountries());
-            return "new-hotel";
-        }
-    }*/
 
     @PostMapping("/addHotel")
     @PreAuthorize("hasAuthority('developers:edit')")
@@ -116,19 +95,6 @@ public class ManagementController {
         }
     }
 
-    /*@PostMapping("/addRoom")
-    @PreAuthorize("hasAuthority('developers:edit')")
-    public String addRoom(@ModelAttribute("room") @Valid Room room, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            return "redirect:/management/addRoom";
-        }
-
-        if (roomService.addRoom(room)) {
-            return "redirect:/management/manage";
-        }
-        return "redirect:/management/addRoom";
-    }*/
-
     @GetMapping("/getUsers")
     @PreAuthorize("hasAuthority('developers:edit')")
     public String getUsers(Model model) {
@@ -143,5 +109,4 @@ public class ManagementController {
         model.addAttribute("orders", orderService.getOrdersByUserId(userId));
         return "orders-list";
     }
-
 }
