@@ -7,8 +7,8 @@
 <head>
     <title>Add a hotel</title>
 </head>
-<body>
 
+<body>
 <form:form method="post" action="/management/addHotel" modelAttribute="hotel">
     <p>
         <label for="name" >Name</label>

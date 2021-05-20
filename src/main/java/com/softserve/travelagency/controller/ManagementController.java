@@ -3,6 +3,7 @@ package com.softserve.travelagency.controller;
 import com.softserve.travelagency.model.Hotel;
 import com.softserve.travelagency.model.Room;
 import com.softserve.travelagency.model.User;
+import com.softserve.travelagency.model.util.RoomType;
 import com.softserve.travelagency.service.HotelService;
 import com.softserve.travelagency.service.OrderService;
 import com.softserve.travelagency.service.RoomService;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.lang.model.util.Types;
 import javax.validation.Valid;
 
 @Controller
@@ -44,9 +46,9 @@ public class ManagementController {
     @PreAuthorize("hasAuthority('developers:edit')")
     public String addHotel(@ModelAttribute("hotel") @Valid Hotel hotel, BindingResult bindingResult, Model model) {
 
-        /*if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "redirect:/management/addHotel";
-        }*/
+        }
 
         if (hotelService.addHotel(hotel)) {
             return "redirect:/management/manage";
@@ -57,15 +59,23 @@ public class ManagementController {
     @GetMapping("/addRoom")
     @PreAuthorize("hasAuthority('developers:edit')")
     public String newRoom(Model model) {
+        model.addAttribute("room", new Room());
         model.addAttribute("hotels", hotelService.getAllHotels());
+        model.addAttribute("types", RoomType.values());
         return "new-room";
     }
 
     @PostMapping("/addRoom")
     @PreAuthorize("hasAuthority('developers:edit')")
-    public String addRoom(@ModelAttribute("room") Room room) {
-        roomService.addRoom(room);
-        return "redirect:/management/manage";
+    public String addRoom(@ModelAttribute("room") @Valid Room room, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "redirect:/management/addRoom";
+        }
+
+        if (roomService.addRoom(room)) {
+            return "redirect:/management/manage";
+        }
+        return "redirect:/management/addRoom";
     }
 
     @GetMapping("/getUsers")

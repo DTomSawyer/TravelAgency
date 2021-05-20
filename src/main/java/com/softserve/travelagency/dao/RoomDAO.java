@@ -1,5 +1,6 @@
 package com.softserve.travelagency.dao;
 
+import com.softserve.travelagency.model.Hotel;
 import com.softserve.travelagency.model.Room;
 
 import java.time.LocalDate;
@@ -11,6 +12,8 @@ public interface RoomDAO {
     void saveRoom(Room room);
 
     Optional<Room> getRoomById(Long id);
+
+    Optional<Room> getRoomByHotelAndNumber(Hotel hotel, Integer number);
 
     public List<Room> getAllRooms();
 

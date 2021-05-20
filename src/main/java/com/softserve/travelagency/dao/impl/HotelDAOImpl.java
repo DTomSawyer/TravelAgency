@@ -51,9 +51,12 @@ public class HotelDAOImpl implements HotelDAO {
         try {
             Query query = session.createQuery("FROM Hotel H WHERE H.name = :name", Hotel.class);
             query.setParameter("name", name);
-            return Optional.of((Hotel) query.getResultList().get(0));
-            //Hotel hotel = session.find(Hotel.class, name);
-            //return Optional.of(hotel);
+
+            List result = query.getResultList();
+            if (result.isEmpty()) {
+                return Optional.empty();
+            }
+            return Optional.of((Hotel) result.get(0));
         } catch (NullPointerException npe) {
             return Optional.empty();
         } finally {

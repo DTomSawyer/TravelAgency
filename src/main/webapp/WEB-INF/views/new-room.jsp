@@ -1,7 +1,9 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
 
+<html>
 <head>
     <title>Add a room</title>
 </head>
@@ -16,10 +18,12 @@
             </c:forEach>
         </select>
 
-        <div class="form-group">
-            <label for="type" class="sr-only">Type</label>
-            <input type="text" id="type" name="type" class="form-control" placeholder="Type" required>
-        </div>
+        <label for="type">Type</label>
+        <select id="type" name="type">
+            <c:forEach var="type" items="${types}">
+                <option value="${type}">${type}</option>
+            </c:forEach>
+        </select>
 
         <div class="form-group">
             <label for="number" class="sr-only">Number</label>

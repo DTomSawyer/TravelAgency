@@ -1,7 +1,6 @@
 package com.softserve.travelagency.dao.impl;
 
 import com.softserve.travelagency.dao.UserDAO;
-import com.softserve.travelagency.model.Hotel;
 import com.softserve.travelagency.model.User;
 import lombok.AllArgsConstructor;
 import org.hibernate.Session;
@@ -24,7 +23,9 @@ public class UserDAOImpl implements UserDAO {
     public void saveUser(User user) {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
+
         session.save(user);
+
         transaction.commit();
     }
 

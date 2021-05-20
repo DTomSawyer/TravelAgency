@@ -47,6 +47,29 @@ public class RoomDAOImpl implements RoomDAO {
     }
 
     @Override
+    public Optional<Room> getRoomByHotelAndNumber(Hotel hotel, Integer number) {
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            Query query = session.createQuery("FROM Room R WHERE R.hotel = :hotel " +
+                    "AND R.number = :number", Room.class);
+            query.setParameter("hotel", hotel);
+            query.setParameter("number", number);
+
+            List result = query.getResultList();
+            if (result.isEmpty()) {
+                return Optional.empty();
+            }
+            return Optional.of((Room) result.get(0));
+        } catch (NullPointerException npe) {
+            return Optional.empty();
+        } finally {
+            transaction.commit();
+        }
+    }
+
+    @Override
     public List<Room> getAllRooms() {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
