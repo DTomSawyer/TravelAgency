@@ -20,4 +20,6 @@ public interface HotelDAO {
     void deleteHotelById(Long id);
 
     Set<String> getAllCountries();
+
+    Hotel getHotelByName(String hotel);
 }

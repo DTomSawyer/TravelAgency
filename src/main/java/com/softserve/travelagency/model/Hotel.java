@@ -31,12 +31,12 @@ public class Hotel {
     @Column(name = "country")
     private String country;
 
-    @NotNull
-    @Pattern(regexp = "[A-Z][a-z]+(-[A-Z][a-z]+)?")
-    @Column(name = "city")
-    private String city;
+//    @NotNull
+//    @Pattern(regexp = "[A-Z][a-z]+(-[A-Z][a-z]+)?")
+//    @Column(name = "city")
+//    private String city;
 
-    @NotNull
+
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "hotel")
     private List<Room> rooms;

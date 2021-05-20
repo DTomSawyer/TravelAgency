@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
         }
 
         user.setRole(Role.USER);
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        user.setEncryptedPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 
         userDAO.saveUser(user);
         return true;
@@ -53,9 +53,5 @@ public class UserServiceImpl implements UserService {
     public User findByEmail(String email) {
         return userDAO.findByEmail(email);
     }
-//    @Transactional
-//    @Override
-//    public void deleteUser2(User user) {
-//        userDAO.delete(user);
-//    }
+
 }

@@ -1,0 +1,65 @@
+body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    margin: 0 30%;
+    font-family: "Montserrat", sans-serif;
+}
+
+.form-signin {
+    font-size: 28px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.form_item {
+    margin: 20px 0 0 0;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.btn {
+    background-color: darkgrey;
+    border: 1px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: black;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 300;
+    box-shadow: black;
+}
+
+.btn:hover {
+    transition: linear 1s;
+    background-color: aquamarine;
+}
+
+.input {
+    border:0;
+    padding:10px;
+    font-size:1.3em;
+    color:#ccc;
+    border:solid 1px #ccc;
+    margin:0 0 20px;
+    width:300px;
+    -moz-box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+    -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+    box-shadow: inner 0 0 4px rgba(0, 0, 0, 0);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 5px;
+
+}
+input:focus {
+    border-radius: 5px;
+    outline: none !important;
+    border-color: darkgrey;
+    box-shadow: 0 0 10px aquamarine;
+}

@@ -37,6 +37,7 @@ public class RegistrationController {
         }
 
         user.setStatus(Status.ACTIVE);
+
         if (!userService.saveUser(user)) {
             return "register";
         }
