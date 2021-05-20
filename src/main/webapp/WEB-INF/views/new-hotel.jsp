@@ -6,6 +6,7 @@
 <head>
     <%@ page isELIgnored="false" %>
 </head>
+
 <style>
     <%@include file="/WEB-INF/resources/css/new-hotel.css" %>
 </style>
