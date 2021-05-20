@@ -26,8 +26,8 @@ public class HotelServiceImpl implements HotelService {
             return false;
         }
         hotelDAO.saveHotel(hotel);
-        return  true;
-
+        return true;
+    }
 
     @Override
     public Optional<Hotel> getHotelById(Long id) {

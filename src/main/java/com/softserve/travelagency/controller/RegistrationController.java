@@ -38,7 +38,7 @@ public class RegistrationController {
 
         user.setStatus(Status.ACTIVE);
 
-        if (!userService.saveUser(user)) {
+        if (!userService.addUser(user)) {
             return "register";
         }
 

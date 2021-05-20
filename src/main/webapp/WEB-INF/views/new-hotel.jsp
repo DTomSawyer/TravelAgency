@@ -21,7 +21,7 @@
         <label for="name">Name</label>
             <form:input type="text" path="name" id="Name" placeholder="Name"/>
             <form:errors path="name"/>
-<%--    <p>${message}</p>--%>
+    <p>${message}</p>
     </p>
 
     </label for="country">Country</label>
