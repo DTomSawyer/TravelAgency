@@ -38,4 +38,5 @@ public class Hotel {
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "hotel")
     private List<Order> orders;
+
 }

@@ -118,4 +118,5 @@ public class ManagementController {
         model.addAttribute("orders", orderService.getOrdersByUserId(userId));
         return "orders-list";
     }
+
 }

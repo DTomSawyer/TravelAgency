@@ -57,4 +57,5 @@ public class HotelServiceImpl implements HotelService {
     public Set<String> getAllCountries() {
         return hotelDAO.getAllCountries();
     }
+
 }

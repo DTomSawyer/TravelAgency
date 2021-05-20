@@ -20,4 +20,5 @@ public interface HotelService {
     void deleteHotelById(Long id);
 
     Set<String> getAllCountries();
+
 }

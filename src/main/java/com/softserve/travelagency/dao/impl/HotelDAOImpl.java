@@ -140,4 +140,5 @@ public class HotelDAOImpl implements HotelDAO {
             transaction.commit();
         }
     }
+
 }

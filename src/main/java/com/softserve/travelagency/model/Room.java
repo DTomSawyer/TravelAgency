@@ -42,4 +42,5 @@ public class Room {
             fetch = FetchType.EAGER,
             mappedBy = "room")
     private List<Order> orders;
+
 }

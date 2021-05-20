@@ -20,4 +20,5 @@ public interface RoomService {
                                  LocalDate departureDate);
 
     void deleteRoom(Long id);
+
 }

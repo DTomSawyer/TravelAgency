@@ -15,4 +15,5 @@ public interface OrderService {
     List<Order> getOrdersByHotelId(Long hotelId);
 
     void deleteOrderById(Long id);
+
 }

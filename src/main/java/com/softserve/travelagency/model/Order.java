@@ -48,4 +48,5 @@ public class Order {
     @NotNull
     @Column(name = "order_date")
     private LocalDateTime orderDate;
+
 }

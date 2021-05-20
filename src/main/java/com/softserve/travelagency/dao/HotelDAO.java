@@ -23,4 +23,5 @@ public interface HotelDAO {
     Set<String> getAllCountries();
 
 
+
 }

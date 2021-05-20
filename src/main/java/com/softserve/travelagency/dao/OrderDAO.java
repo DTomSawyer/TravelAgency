@@ -16,4 +16,5 @@ public interface OrderDAO {
     List<Order> getOrdersByHotelId(Long hotelId);
 
     void deleteOrder(Long id);
+
 }

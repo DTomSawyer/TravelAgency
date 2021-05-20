@@ -21,4 +21,5 @@ public interface RoomDAO {
                                         LocalDate departureDate);
 
     public void deleteRoom(Long id);
+
 }
