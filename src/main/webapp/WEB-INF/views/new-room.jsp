@@ -11,19 +11,23 @@
 <body>
 <form:form method="post" action="management/addRoom" modelAttribute="room">
     <table>
+        <div>
         <label for="hotel">Hotel</label>
         <select id="hotel" name="hotel">
             <c:forEach var="hotel" items="${hotels}">
-                <option value="${hotel}">${hotel.name}</option>
+                <option value="${hotel.name}">${hotel.name}</option>
             </c:forEach>
         </select>
+        </div>
 
+        <div>
         <label for="type">Type</label>
         <select id="type" name="type">
             <c:forEach var="type" items="${types}">
                 <option value="${type}">${type}</option>
             </c:forEach>
         </select>
+        </div>
 
         <div class="form-group">
             <label for="number" class="sr-only">Number</label>
