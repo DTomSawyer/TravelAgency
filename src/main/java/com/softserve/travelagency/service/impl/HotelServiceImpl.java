@@ -5,24 +5,30 @@ import com.softserve.travelagency.model.Hotel;
 import com.softserve.travelagency.service.HotelService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Objects;
 import java.util.Set;
 
 @Service
+@Transactional
 @AllArgsConstructor
 public class HotelServiceImpl implements HotelService {
 
-    private final HotelDAO hotelDAO;
+    private HotelDAO hotelDAO;
 
     @Override
-    public void addHotel(Hotel hotel) {
+    public boolean addHotel(Hotel hotel) {
+       if (Objects.nonNull(hotelDAO.getHotelByName(hotel.getName()))) {
+           return false;
+       }
         hotelDAO.saveHotel(hotel);
+       return  true;
     }
 
     @Override
-    public Optional<Hotel> getHotelById(Long id) {
+    public Hotel getHotelById(Long id) {
         return hotelDAO.getHotelById(id);
     }
 
@@ -43,11 +49,11 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public void deleteHotelById(Long id) {
-        hotelDAO.deleteHotel(id);
+        hotelDAO.deleteHotelById(id);
     }
 
     @Override
-    public Set<String> getAllCountries(){
-       return hotelDAO.getAllCountries();
+    public Set<String> getAllCountries() {
+        return hotelDAO.getAllCountries();
     }
 }

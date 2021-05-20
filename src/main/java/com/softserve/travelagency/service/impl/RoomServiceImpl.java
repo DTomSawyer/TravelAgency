@@ -6,26 +6,18 @@ import com.softserve.travelagency.service.RoomService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class RoomServiceImpl implements RoomService {
 
-    private final RoomDAO roomDAO;
+    private RoomDAO roomDAO;
 
-    @Override
-    public void addRoom(Room room) {
-        roomDAO.saveRoom(room);
-    }
-
-    @Override
-    public Optional<Room> getRoomById(Long id) {
-        return roomDAO.getRoomById(id);
-    }
 
     @Override
     public List<Room> getAllRooms() {
@@ -38,7 +30,18 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public void deleteRoom(Long id) {
-        roomDAO.deleteRoom(id);
+    public void addRoom(Room room) {
+        roomDAO.saveRoom(room);
     }
+
+    @Override
+    public Room getRoomById(Long id) {
+        return roomDAO.getRoomById(id);
+    }
+
+    @Override
+    public void deleteRoom(Long id) {
+        roomDAO.delete(id);
+    }
+
 }

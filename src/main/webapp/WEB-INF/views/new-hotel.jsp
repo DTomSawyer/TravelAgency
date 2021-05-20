@@ -1,40 +1,34 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
 
+<html>
 <head>
     <title>Add a hotel</title>
 </head>
-
 <body>
-<form:form method="post" action="management/addHotel" modelAttribute="hotel">
-    <table>
-        <div class="form-group">
-            <label for="name" class="sr-only">Name</label>
-            <input type="text" id="name" name="name" class="form-control" placeholder="Name" required autofocus>
-        </div>
 
-        <label for="country">Country</label>
-        <select id="country" name="country">
-            <c:forEach var="country" items="${countries}">
-                <option value="${country}">${country}</option>
-            </c:forEach>
-        </select>
+<form:form method="post" action="/management/addHotel" modelAttribute="hotel">
+    <p>
+        <label for="name" >Name</label>
+        <form:input type="text" path="name" id="Name" placeholder="Name"/>
+        <form:errors path="name"/>
+    </p>
 
-        <div class="form-group">
-            <label for="city" class="sr-only">City</label>
-            <input type="text" id="city" name="city" class="form-control" placeholder="City" required>
-        </div>
+    </label for="country">Country</label>
+    <select name="country">
+        <c:forEach var="country" items="${countries}">
+            <option value="${country}">"${country}"</option>
+        </c:forEach>
+    </select>
 
-        <div>
-            <c:if test="${isError}">
-                <span>Invalid data</span>
-            </c:if>
-        </div>
-
-        <tr>
-            <td><input type="submit" value="Add a hotel"/></td>
-        </tr>
-    </table>
+    <p>
+        <label for="city" >City</label>
+        <input type="text" id="city" name="city" class="form-control" placeholder="City" required>
+    </p>
+    <button type="submit">Add a hotel</button>
 </form:form>
+
 </body>
 </html>

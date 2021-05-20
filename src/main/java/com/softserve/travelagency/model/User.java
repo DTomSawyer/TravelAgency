@@ -23,35 +23,40 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Email
+    @Email(message = "Incorrect email")
     @NotBlank(message = "Email cannot be empty")
     @Column(unique = true, name = "email")
     private String email;
 
-    @NotNull
-    @Pattern(regexp = "[1-9A-Za-z!%@*]{8,20}", message = "Invalid password!")
-    @Column(name = "password")
+
+
+    @Transient
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "password must have minimum eight characters, at least one letter and one number")
     private String password;
 
-    @Pattern(regexp = "[A-Z][a-z]+(-[A-Z][a-z]+)?")
+
+    @Column(name = "password")
+    private String encryptedPassword;
+
+    @Pattern(regexp = "[A-Z][a-z]+(-[A-Z][a-z]+)?", message = "Incorrect name!")
     @Column(name = "first_name")
     private String firstName;
 
-    @Pattern(regexp = "[A-Z][a-z]+(-[A-Z][a-z]+)?")
+    @Pattern(regexp = "[A-Z][a-z]+(-[A-Z][a-z]+)?", message = "Incorrect last name!")
     @Column(name = "last_name")
     private String lastName;
 
-    @NotNull
+//    @NotNull
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(//cascade = CascadeType.ALL,
-            mappedBy = "user",
-            fetch = FetchType.EAGER) //remove EAGER
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "user") //fetch type  EAGER ???
     private List<Order> orders;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private Status status;
+
 }

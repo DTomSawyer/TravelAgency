@@ -21,4 +21,6 @@ public interface HotelDAO {
     void deleteHotel(Long id);
 
     Set<String> getAllCountries();
+
+    Hotel getHotelByName(String hotel);
 }

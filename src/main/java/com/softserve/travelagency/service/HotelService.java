@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface HotelService {
-    void addHotel(Hotel hotel);
+    boolean addHotel(Hotel hotel);
 
     Optional<Hotel> getHotelById(Long id);
 
@@ -20,4 +20,5 @@ public interface HotelService {
     void deleteHotelById(Long id);
 
     Set<String> getAllCountries();
+
 }

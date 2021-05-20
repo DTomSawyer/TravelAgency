@@ -1,6 +1,7 @@
 package com.softserve.travelagency.service;
 
 import com.softserve.travelagency.model.Room;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;

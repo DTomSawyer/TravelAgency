@@ -5,42 +5,19 @@ import com.softserve.travelagency.model.User;
 import com.softserve.travelagency.model.util.Role;
 import com.softserve.travelagency.service.UserService;
 import lombok.AllArgsConstructor;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
+@Transactional
 @AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
+    private UserDAO userDAO;
 
-    private final UserDAO userDAO;
-
-    @Override
-    public boolean addUser(User user) {
-        Optional<User> userDB = userDAO.getUserByEmail(user.getEmail());
-
-        if (userDB.isPresent()) {
-            return false;
-        }
-
-        user.setRole(Role.USER);
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-
-        userDAO.saveUser(user);
-        return true;
-    }
-
-    @Override
-    public Optional<User> getUserById(Long id) {
-        return userDAO.getUserById(id);
-    }
-
-    @Override
-    public Optional<User> getUserByEmail(String email) {
-        return userDAO.getUserByEmail(email);
-    }
 
     @Override
     public List<User> getAllUsers() {
@@ -48,7 +25,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(Long id) {
-        userDAO.deleteUser(id);
+    public boolean saveUser(User user) {
+        User userDB = userDAO.findByEmail(user.getEmail());
+
+        if (userDB != null) {
+            return false;
+        }
+
+        user.setRole(Role.USER);
+        user.setEncryptedPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+
+        userDAO.saveUser(user);
+        return true;
     }
+
+    @Override
+    public User getUserById(Long id) {
+        return userDAO.getUserById(id);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        userDAO.delete(id);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userDAO.findByEmail(email);
+    }
+
 }

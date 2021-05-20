@@ -1,16 +1,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<%--
-  Created by IntelliJ IDEA.
-  User: mac
-  Date: 5/4/21
-  Time: 7:51 пп
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<style><%@include file="/WEB-INF/resources/css/register.css"%></style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,38 +10,32 @@
     <title>Register</title>
 </head>
 <body>
-<div class="container">
-    <form class="form-signin" method="post" action="/registration/register">
-        <h2 class="form-signin-heading">Please sign in</h2>
+    <form:form class="form-signin" method="post" action="/registration/register" modelAttribute="user">
+        <h2>Please sign in</h2>
         <p>
-            <label for="email" class="sr-only">Email</label>
-            <input type="text" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
-        </p>
-        <p>
-            <label for="firstName" class="sr-only">First name</label>
-            <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First name" required>
-        </p>
-        <p>
-            <label for="lastName" class="sr-only">Last name</label>
-            <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last name" required>
-        </p>
-        <p>
-            <label for="password" class="sr-only">Password</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-        </p>
+            <label for="email" >Email </label>
+                <form:input type="text" path="email" id="Email" placeholder="Email"/>
+                <form:errors path="email"/>
 
-        <div>
-            <c:if test="${userExists}">
-                <span>User already exists!</span>
-            </c:if>
+        </p>
+        <p>
+            <label for="firstName" >First name</label>
+            <form:input type="text" id="firstName" path="firstName" class="form-control" placeholder="First name"/>
+            <form:errors path="firstName"/>
+        </p>
+        <p>
+            <label for="lastName" >Last name</label>
+            <form:input type="text" id="lastName" path="lastName" class="form-control" placeholder="Last name"/>
+            <form:errors path="lastName"/>
+        </p>
+        <p>
+            <label for="password" >Password</label>
+            <form:input type="password" id="password" path="password" class="form-control" placeholder="Password"/>
+            <form:errors path="password"/>
+        </p>
+        <button type="submit">Sign up</button>
+    </form:form>
 
-            <c:if test="${isError}">
-                <span>Invalid data</span>
-            </c:if>
-        </div>
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-    </form>
-</div>
+    </div>
 </body>
 </html>
