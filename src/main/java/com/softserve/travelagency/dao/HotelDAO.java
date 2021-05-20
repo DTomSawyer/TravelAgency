@@ -16,8 +16,6 @@ public interface HotelDAO {
 
     List<Hotel> getHotelsByCountry(String country);
 
-    /*List<Hotel> getHotelsByCity(String city);*/
-
     List<Hotel> getAllHotels();
 
     void deleteHotel(Long id);

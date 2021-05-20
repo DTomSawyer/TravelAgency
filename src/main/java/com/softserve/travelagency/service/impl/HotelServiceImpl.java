@@ -17,7 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class HotelServiceImpl implements HotelService {
 
-    private HotelDAO hotelDAO;
+    private final HotelDAO hotelDAO;
 
     @Override
     public boolean addHotel(Hotel hotel) {
