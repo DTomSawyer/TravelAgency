@@ -2,7 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<style><%@include file="/WEB-INF/resources/css/register.css"%></style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,32 +10,32 @@
     <title>Register</title>
 </head>
 <body>
-<div class="container">
     <form:form class="form-signin" method="post" action="/registration/register" modelAttribute="user">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h2>Please sign in</h2>
         <p>
-            <label for="email" class="sr-only">Email
+            <label for="email" >Email </label>
                 <form:input type="text" path="email" id="Email" placeholder="Email"/>
                 <form:errors path="email"/>
-            </label>
+
         </p>
         <p>
-            <label for="firstName" class="sr-only">First name</label>
+            <label for="firstName" >First name</label>
             <form:input type="text" id="firstName" path="firstName" class="form-control" placeholder="First name"/>
             <form:errors path="firstName"/>
         </p>
         <p>
-            <label for="lastName" class="sr-only">Last name</label>
+            <label for="lastName" >Last name</label>
             <form:input type="text" id="lastName" path="lastName" class="form-control" placeholder="Last name"/>
             <form:errors path="lastName"/>
         </p>
         <p>
-            <label for="password" class="sr-only">Password</label>
+            <label for="password" >Password</label>
             <form:input type="password" id="password" path="password" class="form-control" placeholder="Password"/>
             <form:errors path="password"/>
         </p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+        <button type="submit">Sign up</button>
     </form:form>
-</div>
+
+    </div>
 </body>
 </html>

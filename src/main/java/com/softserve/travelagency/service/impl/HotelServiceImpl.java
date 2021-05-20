@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Service
@@ -18,8 +19,12 @@ public class HotelServiceImpl implements HotelService {
     private HotelDAO hotelDAO;
 
     @Override
-    public void addHotel(Hotel hotel) {
+    public boolean addHotel(Hotel hotel) {
+       if (Objects.nonNull(hotelDAO.getHotelByName(hotel.getName()))) {
+           return false;
+       }
         hotelDAO.saveHotel(hotel);
+       return  true;
     }
 
     @Override

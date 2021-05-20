@@ -2,6 +2,7 @@ package com.softserve.travelagency.dao.impl;
 
 import com.softserve.travelagency.dao.HotelDAO;
 import com.softserve.travelagency.model.Hotel;
+import com.softserve.travelagency.model.User;
 import lombok.AllArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,9 +29,7 @@ public class HotelDAOImpl implements HotelDAO {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
 
-        session.persist(hotel);
-        session.flush();
-
+        session.save(hotel);
         transaction.commit();
     }
 
@@ -105,5 +104,18 @@ public class HotelDAOImpl implements HotelDAO {
 
         transaction.commit();
         return allSet;
+    }
+
+    @Override
+    public Hotel getHotelByName(String name) {
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createQuery("FROM Hotel H WHERE H.name = :name", Hotel.class);
+        query.setParameter("name", name);
+        Hotel hotel = (Hotel) query.getSingleResult();
+
+        transaction.commit();
+        return hotel;
     }
 }

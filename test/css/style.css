@@ -1,0 +1,54 @@
+
+.container{
+
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.successe__item {
+    display: flex;
+    flex-direction: column;
+}
+.s_l {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 4vw auto;
+    text-align: center;
+}
+
+.btn__sc {
+    margin: 0 auto ;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.btn__item {
+
+    padding: 15px;
+
+    margin-top: 0;
+    margin-block-end: 0;
+}
+.btn {
+    background-color: darkgrey;
+    border: 1px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: black;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 300;
+    box-shadow: black;
+}
+
+.btn:hover {
+    transition: linear 1s;
+    background-color: aquamarine;
+}
+

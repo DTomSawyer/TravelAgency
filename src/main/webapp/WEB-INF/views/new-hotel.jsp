@@ -1,16 +1,19 @@
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>Add a hotel</title>
 </head>
 <body>
 
-<form method="post" action="/management/addHotel" modelAttribute="hotel">
+<form:form method="post" action="/management/addHotel" modelAttribute="hotel">
     <p>
-        <label for="name" class="sr-only">Name</label>
-        <input type="text" id="name" name="name" class="form-control" placeholder="Name" required autofocus>
+        <label for="name" >Name</label>
+        <form:input type="text" path="name" id="Name" placeholder="Name"/>
+        <form:errors path="name"/>
     </p>
 
     </label for="country">Country</label>
@@ -21,11 +24,11 @@
     </select>
 
     <p>
-        <label for="city" class="sr-only">City</label>
+        <label for="city" >City</label>
         <input type="text" id="city" name="city" class="form-control" placeholder="City" required>
     </p>
     <button type="submit">Add a hotel</button>
-</form>
+</form:form>
 
 </body>
 </html>
