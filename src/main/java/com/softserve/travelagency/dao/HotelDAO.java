@@ -21,5 +21,5 @@ public interface HotelDAO {
 
     Set<String> getAllCountries();
 
-    Hotel getHotelByName(String hotel);
+    boolean getHotelByName(String hotel);
 }

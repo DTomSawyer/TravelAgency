@@ -2,7 +2,6 @@ package com.softserve.travelagency.dao.impl;
 
 import com.softserve.travelagency.dao.HotelDAO;
 import com.softserve.travelagency.model.Hotel;
-import com.softserve.travelagency.model.User;
 import lombok.AllArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,8 +11,6 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.Query;
 
 import java.util.HashSet;
-
-import java.time.LocalDate;
 
 import java.util.List;
 import java.util.Set;
@@ -107,15 +104,17 @@ public class HotelDAOImpl implements HotelDAO {
     }
 
     @Override
-    public Hotel getHotelByName(String name) {
+    public boolean getHotelByName(String name) {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
 
         Query query = session.createQuery("FROM Hotel H WHERE H.name = :name", Hotel.class);
         query.setParameter("name", name);
-        Hotel hotel = (Hotel) query.getSingleResult();
 
+        List<Hotel> hotels = query.getResultList();
         transaction.commit();
-        return hotel;
+        if(hotels.size() > 0){
+            return true;
+        } else return false;
     }
 }
