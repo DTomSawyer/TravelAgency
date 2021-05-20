@@ -24,7 +24,7 @@
     <tr>
         <th>Id</th>
         <th>Hotel</th>
-        <th>City</th>
+        <%--<th>City</th>--%>
         <th>Type</th>
         <th>Price</th>
         <th>Number</th>
@@ -45,7 +45,7 @@
             <tr>
                 <td>${room.id}</td>
                 <td>${room.hotel.name}</td>
-                <td>${room.hotel.city}</td>
+                <%--<td>${room.hotel.city}</td>--%>
                 <td>${room.type}</td>
                 <td>${room.price}</td>
                 <td>${room.number}</td>

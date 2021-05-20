@@ -6,7 +6,7 @@
 <body>
 
 <h2>Your order #${order.id} has been saved</h2>
-<p>${order.hotel.country}, ${order.hotel.city}</p>
+<p>${order.hotel.country}<%--, ${order.hotel.city}--%></p>
 <p>${order.hotel.name}, ${order.room.type} room, ${order.room.price}$</p>
 <p>${order.arrivalDate} - ${order.departureDate}</p>
 

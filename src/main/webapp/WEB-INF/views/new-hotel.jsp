@@ -23,10 +23,10 @@
         </c:forEach>
     </select>
 
-    <p>
+    <%--<p>
         <label for="city" >City</label>
         <input type="text" id="city" name="city" class="form-control" placeholder="City" required>
-    </p>
+    </p>--%>
     <button type="submit">Add a hotel</button>
 </form:form>
 
