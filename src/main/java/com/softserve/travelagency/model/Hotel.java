@@ -22,7 +22,7 @@ public class Hotel {
     private Long id;
 
     @NotNull
-    @Pattern(regexp = "[a-zA-Z0-9 ]")
+    @Pattern(regexp = "[a-zA-Z0-9 ]",message = "Incorrect name")
     @Column(name = "name")
     private String name;
 
