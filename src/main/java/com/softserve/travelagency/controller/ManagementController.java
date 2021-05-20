@@ -45,16 +45,22 @@ public class ManagementController {
     public String addHotel(@ModelAttribute("hotel") @Valid Hotel hotel, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
+            model.addAttribute("hotel", new Hotel());
+            model.addAttribute("countries", hotelService.getAllCountries());
             return "new-hotel";
-        }
+//        }
+//
+//        if (hotelService.addHotel(hotel)) {
+//            return "redirect:/management/manage";
+//        } else {
+//            String message = "Hotel already exist";
+//            model.addAttribute("message", message);
+//            return "new-hotel";
 
-        if (hotelService.addHotel(hotel)) {
-            return "redirect:/management/manage";
-        } else {
-            return "redirect:/management/addHotels";
-
         }
+        return "new-hotel";
     }
+
 
     @GetMapping("/addRoom")
     @PreAuthorize("hasAuthority('developers:edit')")

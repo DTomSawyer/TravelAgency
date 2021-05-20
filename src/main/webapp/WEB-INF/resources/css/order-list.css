@@ -1,11 +1,18 @@
 body {
-    display: flex;
-    align-items: center;
+
     font-family: 'Montserrat', sans-serif;
 }
+
+h2 {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+
 table {
 
-    margin: 0 auto;
+    margin: 250px auto;
     border-spacing: 2px;
     border-radius: 8px;
 }
@@ -13,8 +20,8 @@ thead {
     background-color: aquamarine;
 }
 th {
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 500;
 
 }
 

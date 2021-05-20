@@ -21,12 +21,13 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public boolean addHotel(Hotel hotel) {
-        if (Objects.nonNull(hotelDAO.getHotelByName(hotel.getName()))) {
+
+        if (hotelDAO.getHotelByName(hotel.getName())) {
             return false;
         }
         hotelDAO.saveHotel(hotel);
-        return true;
-    }
+        return  true;
+
 
     @Override
     public Optional<Hotel> getHotelById(Long id) {
