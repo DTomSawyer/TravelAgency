@@ -42,25 +42,6 @@ public class ManagementController {
         return "new-hotel";
     }
 
-    @PostMapping("/addHotel")
-    @PreAuthorize("hasAuthority('developers:edit')")
-    public String addHotel(@ModelAttribute("hotel") @Valid Hotel hotel, BindingResult bindingResult, Model model) {
-
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("hotel", new Hotel());
-            model.addAttribute("countries", hotelService.getAllCountries());
-            return "new-hotel";
-        }
-
-        if (hotelService.addHotel(hotel)) {
-            return "redirect:/management/manage";
-        } else {
-            String message = "Hotel already exists!";
-            model.addAttribute("message", message);
-            return "new-hotel";
-        }
-    }
-
     /*@PostMapping("/addHotel")
     @PreAuthorize("hasAuthority('developers:edit')")
     public String addHotel(@ModelAttribute("hotel") @Valid Hotel hotel, BindingResult bindingResult, Model model) {
@@ -70,11 +51,34 @@ public class ManagementController {
         }
 
         if (hotelService.addHotel(hotel)) {
-            model.addAttribute("message", "Hotel already exists!");
             return "redirect:/management/manage";
+        } else {
+            String message = "Hotel already exists!";
+            model.addAttribute("message", message);
+            model.addAttribute("hotel", new Hotel());
+            model.addAttribute("countries", hotelService.getAllCountries());
+            return "new-hotel";
         }
-        return "redirect:/management/addHotel";
     }*/
+
+    @PostMapping("/addHotel")
+    @PreAuthorize("hasAuthority('developers:edit')")
+    public String addHotel(@ModelAttribute("hotel") @Valid Hotel hotel, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("countries", hotelService.getAllCountries());
+            return "new-hotel";
+        }
+
+        if (hotelService.addHotel(hotel)) {
+            return "redirect:/management/manage";
+        } else {
+            String message = "Hotel already exists!";
+            model.addAttribute("message", message);
+            model.addAttribute("countries", hotelService.getAllCountries());
+            return "new-hotel";
+        }
+    }
 
     @GetMapping("/addRoom")
     @PreAuthorize("hasAuthority('developers:edit')")
@@ -91,7 +95,7 @@ public class ManagementController {
                           @RequestParam String type,
                           @RequestParam Integer number,
                           @RequestParam Double price,
-                          BindingResult bindingResult, Model model) {
+                          Model model) {
 
         Hotel hotel = hotelService.getHotelByName(hotelName);
         Room room = Room.builder()
@@ -101,14 +105,15 @@ public class ManagementController {
                 .price(price)
                 .build();
 
-        if (bindingResult.hasErrors()) {
-            return "redirect:/management/addRoom";
-        }
-
         if (roomService.addRoom(room)) {
             return "redirect:/management/manage";
+        } else {
+            String message = "Room already exists!";
+            model.addAttribute("message", message);
+            model.addAttribute("hotels", hotelService.getAllHotels());
+            model.addAttribute("types", RoomType.values());
+            return "new-room";
         }
-        return "redirect:/management/addRoom";
     }
 
     /*@PostMapping("/addRoom")

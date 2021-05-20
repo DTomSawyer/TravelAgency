@@ -9,11 +9,11 @@
 </head>
 
 <body>
-<form:form method="post" action="management/addRoom" modelAttribute="room">
+<form:form method="post" action="/management/addRoom" modelAttribute="room">
     <table>
         <div>
-        <label for="hotel">Hotel</label>
-        <select id="hotel" name="hotel">
+        <label for="hotelName">Hotel</label>
+        <select id="hotelName" name="hotelName">
             <c:forEach var="hotel" items="${hotels}">
                 <option value="${hotel.name}">${hotel.name}</option>
             </c:forEach>
@@ -38,6 +38,8 @@
             <label for="price" class="sr-only">Price</label>
             <input type="text" id="price" name="price" class="form-control" placeholder="Price" required>
         </div>
+
+        <p>${message}</p>
 
         <tr>
             <td><input type="submit" value="Add a room"/></td>

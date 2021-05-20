@@ -14,14 +14,14 @@
 <head>
     <title>Add a hotel</title>
 </head>
-
 <body>
+
 <form:form method="post" action="/management/addHotel" modelAttribute="hotel">
     <p>
         <label for="name">Name</label>
             <form:input type="text" path="name" id="Name" placeholder="Name"/>
             <form:errors path="name"/>
-    <span>${message}</span>
+    <p>${message}</p>
     </p>
 
     </label for="country">Country</label>
@@ -31,9 +31,14 @@
         </c:forEach>
     </select>
 
+    <p>
+        <label for="city">City</label>
+
+        <form:input type="text" id="city" path="city" class="form-control" placeholder="City"/>
+        <form:errors path="name"/>
+    </p>
     <button type="submit">Add a hotel</button>
 </form:form>
 
 </body>
-
 </html>

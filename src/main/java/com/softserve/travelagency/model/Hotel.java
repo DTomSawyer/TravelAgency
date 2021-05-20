@@ -22,7 +22,7 @@ public class Hotel {
     private Long id;
 
     @NotNull
-    //@Pattern(regexp = "[A-Z][a-z]+(-[A-Z][a-z]+)?")
+    @Pattern(regexp = "[A-Z][a-z]+(-[A-Z][a-z]+)?", message = "Incorrect name")
     @Column(name = "name")
     private String name;
 
@@ -30,6 +30,11 @@ public class Hotel {
     @Pattern(regexp = "[A-Z][a-z]+(-[A-Z][a-z]+)?")
     @Column(name = "country")
     private String country;
+
+    @NotNull
+    @Pattern(regexp = "[A-Z][a-z]+(-[A-Z][a-z]+)?")
+    @Column(name = "city")
+    private String city;
 
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "hotel")
